@@ -1,6 +1,7 @@
 #include "ViewController.h"
 #include "view/View.h"
 
+
 ViewController::ViewController() : QObject()
 {
     scene = new QGraphicsScene;
@@ -23,6 +24,17 @@ void ViewController::startGame()
     scene->clear();
     scene->setBackgroundBrush(QBrush(QImage(":/images/gamebackground.jpg")));
     scene->addItem(SpaceShip::getInstance());
+
+    //set picture score board
+    scoreBoard=new QGraphicsPixmapItem();
+    scoreBoard->setPixmap(QPixmap(":/images/score.png"));
+    scoreBoard->setPos(0,0);
+    scene->addItem(scoreBoard);
+
+    //set number in score board
+    cScore =new Score();
+    scene->addItem(cScore);
+    cScore->setPos(10,-5);
 }
 
 void ViewController::close()

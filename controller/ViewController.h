@@ -7,9 +7,11 @@
 #include <model/Spaceship.h>
 #include <model/menu/Play.h>
 #include <model/menu/Quit.h>
+#include <model/Score.h>
 
 
-class ViewController : public QObject
+
+class ViewController : public QObject , public QGraphicsPixmapItem
 {
     Q_OBJECT
 
@@ -22,6 +24,8 @@ private:
     QGraphicsScene * scene;
     QTimer * ctimer;
 
+    Score *cScore;
+    QGraphicsPixmapItem *scoreBoard;
 
 public:
     explicit ViewController();
