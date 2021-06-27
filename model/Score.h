@@ -10,7 +10,7 @@ class Score: public QGraphicsTextItem
 private:
     int playerScore;
 public:
-    explicit Score();
+    explicit Score(QGraphicsScene *scene);
 
 signals:
 

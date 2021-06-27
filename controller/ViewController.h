@@ -8,6 +8,7 @@
 #include <model/menu/Play.h>
 #include <model/menu/Quit.h>
 #include <model/Score.h>
+#include <model/Heart.h>
 
 
 
@@ -23,9 +24,6 @@ private:
 
     QGraphicsScene * scene;
     QTimer * ctimer;
-
-    Score *cScore;
-    QGraphicsPixmapItem *scoreBoard;
 
 public:
     explicit ViewController();

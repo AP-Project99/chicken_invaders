@@ -1,12 +1,12 @@
 #include "ViewController.h"
 #include "view/View.h"
+#include <QMediaPlayer>
 
 
 ViewController::ViewController() : QObject()
 {
     scene = new QGraphicsScene;
     scene->setSceneRect(0,0,1350,650);
-
 }
 
 ViewController::~ViewController()
@@ -25,16 +25,15 @@ void ViewController::startGame()
     scene->setBackgroundBrush(QBrush(QImage(":/images/gamebackground.jpg")));
     scene->addItem(SpaceShip::getInstance());
 
-    //set picture score board
-    scoreBoard=new QGraphicsPixmapItem();
-    scoreBoard->setPixmap(QPixmap(":/images/score.png"));
-    scoreBoard->setPos(0,0);
-    scene->addItem(scoreBoard);
-
-    //set number in score board
-    cScore =new Score();
+    //set score board
+    Score *cScore =new Score(scene);
     scene->addItem(cScore);
     cScore->setPos(10,-5);
+
+    //set heart on background
+    Heart *cHeart=new Heart(scene);
+    scene->addItem(cHeart);
+    cHeart->setPos(20,628);
 }
 
 void ViewController::close()
