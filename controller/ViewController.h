@@ -35,8 +35,6 @@ public:
 public slots:
     void startGame();
 
-    void close();
-
 
 signals:
 

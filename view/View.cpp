@@ -4,6 +4,7 @@ View * View::view = nullptr;    /// initializing static member
 
 View::View() : QGraphicsView()
 {
+    /// set the scene to view
     viewController = new ViewController;
     setScene(viewController->scene);
 
@@ -30,7 +31,6 @@ View *View::getInstance()
 void View::showMenu()
 {
     viewController->startMenu();
-
 }
 
 //void View::mousePressEvent(QGraphicsSceneMouseEvent *event)

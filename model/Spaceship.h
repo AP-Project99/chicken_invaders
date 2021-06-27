@@ -16,9 +16,9 @@ class SpaceShip : public QObject , public QGraphicsPixmapItem
 {
     Q_OBJECT
 private:
-    explicit SpaceShip();     /// constructor
+    explicit SpaceShip();                   /// private constructor
 
-    static SpaceShip * spaceShip ;         /// the only object of this class
+    static SpaceShip * spaceShip;         /// the only object of this class
     QList <Bullet *> allBullets;
 
 public:
@@ -26,7 +26,7 @@ public:
 
     void keyPressEvent(QKeyEvent * event) ;
 
-    void mousePressEvent(QMouseEvent * event);
+//    void mousePressEvent(QMouseEvent * event);
 
 //    void mouseMoveEvent(QMouseEvent * event) ;
 

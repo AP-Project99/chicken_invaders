@@ -20,13 +20,15 @@ void ViewController::setBackground(QString address){
 
 void ViewController::startGame()
 {
+    /// deleting objects
+    delete play;
+    delete quit;
     scene->clear();
+
+    /// new window and items
     scene->setBackgroundBrush(QBrush(QImage(":/images/gamebackground.jpg")));
     scene->addItem(SpaceShip::getInstance());
-}
 
-void ViewController::close()
-{
 
 }
 

@@ -53,14 +53,14 @@ void SpaceShip::keyPressEvent(QKeyEvent *event)
 
 }
 
-void SpaceShip::mousePressEvent(QMouseEvent *event)
-{
-    if(event->button() == Qt::LeftButton){
-        Bullet * bullet = new Bullet(scene());
-        allBullets.push_back(bullet);
-    }
+//void SpaceShip::mousePressEvent(QMouseEvent *event)
+//{
+//    if(event->button() == Qt::LeftButton){
+//        Bullet * bullet = new Bullet(scene());
+//        allBullets.push_back(bullet);
+//    }
 
-}
+//}
 
 //void SpaceShip::mouseMoveEvent(QMouseEvent *event)
 //{
