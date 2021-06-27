@@ -7,5 +7,15 @@
         <file>bck.jpg</file>
         <file>background.jpg</file>
         <file>gamebackground.jpg</file>
+        <file>score.png</file>
+        <file>heart.png</file>
+    </qresource>
+    <qresource prefix="/music">
+        <file>bullet.mp3</file>
+        <file>chicken.mp3</file>
+        <file>egg.mp3</file>
+        <file>meat.mp3</file>
+        <file>spaceship.mp3</file>
+        <file>start.mp3</file>
     </qresource>
 </RCC>

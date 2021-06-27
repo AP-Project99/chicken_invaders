@@ -1,4 +1,5 @@
-QT       += core gui
+QT       += core gui \
+         multimedia
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -13,6 +14,8 @@ SOURCES += \
     controller/controller.cpp \
     main.cpp \
     model/Bullet.cpp \
+    model/Heart.cpp \
+    model/Score.cpp \
     model/Spaceship.cpp \
     model/menu/Play.cpp \
     model/menu/Quit.cpp \
@@ -24,6 +27,8 @@ HEADERS += \
     controller/ViewController.h \
     controller/controller.h \
     model/Bullet.h \
+    model/Heart.h \
+    model/Score.h \
     model/Spaceship.h \
     model/menu/Play.h \
     model/menu/Quit.h \

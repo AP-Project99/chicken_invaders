@@ -49,6 +49,16 @@ void SpaceShip::keyPressEvent(QKeyEvent *event)
     if(event->key() == Qt::Key_Space){
         Bullet * bullet = new Bullet(scene());
         allBullets.push_back(bullet);
+
+        bulletSound=new QMediaPlayer();
+        bulletSound->setMedia(QUrl("qrc:/music/bullet.mp3"));
+
+        if(bulletSound->state()==QMediaPlayer::PlayingState){
+            bulletSound->setPosition(0);
+        }
+        else if(bulletSound->state()==QMediaPlayer::StoppedState){
+            bulletSound->play();
+        }
     }
 
 }
