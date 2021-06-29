@@ -6,6 +6,7 @@
 #include <QGraphicsRectItem>
 #include <QGraphicsPixmapItem>
 #include <QWidget>
+#include <QMediaPlayer>
 
 
 //#include "view/View.h"
@@ -20,6 +21,8 @@ private:
 
     static SpaceShip * spaceShip;         /// the only object of this class
     QList <Bullet *> allBullets;
+
+    QMediaPlayer *bulletSound;
 
 public:
     static SpaceShip * getInstance();     /// creating the only instance of class

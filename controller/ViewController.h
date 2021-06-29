@@ -7,9 +7,13 @@
 #include <model/Spaceship.h>
 #include <model/menu/Play.h>
 #include <model/menu/Quit.h>
+#include <model/Score.h>
+#include <model/Heart.h>
+#include <model/Chickens.h>
 
 
-class ViewController : public QObject
+
+class ViewController : public QObject , public QGraphicsPixmapItem
 {
     Q_OBJECT
 
@@ -18,10 +22,10 @@ class ViewController : public QObject
 private:
     Play * play;
     Quit * quit;
+    Chickens * chick;
 
     QGraphicsScene * scene;
     QTimer * ctimer;
-
 
 public:
     explicit ViewController();

@@ -1,4 +1,6 @@
 #include "view.h"
+#include <QMediaPlayer>
+#include <QMediaPlaylist>
 
 View * View::view = nullptr;    /// initializing static member
 

@@ -7,7 +7,6 @@ Bullet::Bullet(QGraphicsScene * scene) : QObject() , QGraphicsPixmapItem()
     setPos(SpaceShip::getInstance()->x()+60, SpaceShip::getInstance()->y() - 35);
     scene->addItem(this);
 
-
     connect(bulletTimer, SIGNAL(timeout()), this, SLOT(move()));
     bulletTimer->start(25);
 
