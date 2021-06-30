@@ -17,6 +17,7 @@
         <file>chick2.png</file>
         <file>chick3.png</file>
         <file>chick4.png</file>
+        <file>bullet2.png</file>
     </qresource>
     <qresource prefix="/music">
         <file>bullet.mp3</file>
