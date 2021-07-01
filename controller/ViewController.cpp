@@ -1,7 +1,7 @@
 #include "ViewController.h"
 #include "view/View.h"
 #include <QMediaPlayer>
-
+#include <QList>
 
 ViewController::ViewController() : QObject()
 {
@@ -43,9 +43,11 @@ void ViewController::startGame()
     cHeart->setPos(20,628);
 
     // add chicken
-    chick = new Chickens;
-    scene->addItem(chick);
-
+    QList<Chickens *> chick;
+    for (int i=1;i<=20 ;++i ) {
+        chick.push_back(new Chickens(i));
+        scene->addItem(chick[i-1]);
+    }
 }
 
 void ViewController::startMenu()
