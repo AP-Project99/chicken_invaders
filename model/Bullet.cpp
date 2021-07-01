@@ -1,5 +1,6 @@
 #include "Bullet.h"
 #include "Spaceship.h"
+#include "Chickens.h"
 
 Bullet::Bullet(QGraphicsScene * scene) : QObject() , QGraphicsPixmapItem()
 {
@@ -14,5 +15,22 @@ Bullet::Bullet(QGraphicsScene * scene) : QObject() , QGraphicsPixmapItem()
 
 void Bullet::move()
 {
+    //decrement chicken lives
+    QList<QGraphicsItem *> collidingList=collidingItems();
+    for (int i=0;i<collidingList.size() ;++i ) {
+        if (typeid (*(collidingList[i]))==typeid (Chickens)) {
+            dynamic_cast<Chickens *>(collidingList[i])->decrementChicken();
+
+            scene()->removeItem(this);
+            delete this;
+            return;
+        }
+    }
+
+
     setPos(x(), y() - 10);
+    if(y()==0){
+        scene()->removeItem(this);
+        delete this;
+    }
 }

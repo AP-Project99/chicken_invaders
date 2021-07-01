@@ -18,6 +18,10 @@
         <file>chick3.png</file>
         <file>chick4.png</file>
         <file>bullet2.png</file>
+        <file>oneChicken1.png</file>
+        <file>oneChicken2.png</file>
+        <file>oneChicken3.png</file>
+        <file>oneChicken4.png</file>
     </qresource>
     <qresource prefix="/music">
         <file>bullet.mp3</file>

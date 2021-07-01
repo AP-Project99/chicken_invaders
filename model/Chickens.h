@@ -16,12 +16,17 @@ private:
 
     int imageTimer = 0;
 
+    int lives=1;
+
 public:
 
-    explicit Chickens();
+    explicit Chickens(int number);
 
     void setImage();
 
+    void decrementChicken();
+
+    void setChickenPos(int number);
 
 signals:
 
