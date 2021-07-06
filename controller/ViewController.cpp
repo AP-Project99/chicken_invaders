@@ -7,6 +7,7 @@ ViewController::ViewController() : QObject()
 {
     scene = new QGraphicsScene;
     scene->setSceneRect(0,0,1350,650);
+//    View::getInstance()->setMouseTracking(true);
 }
 
 ViewController::~ViewController()
@@ -28,7 +29,8 @@ void ViewController::startGame()
 
     /// new window and items
     scene->setBackgroundBrush(QBrush(QImage(":/images/gamebackground.jpg")));
-    scene->addItem(SpaceShip::getInstance());
+    spaceShip = SpaceShip::getInstance();
+    scene->addItem(spaceShip);
 
 
 
@@ -63,4 +65,40 @@ void ViewController::startMenu()
     connect(play , SIGNAL(clicked()), this, SLOT(startGame()));
     connect(quit , SIGNAL(quitClicked()), View::getInstance(), SLOT(close()));
 }
+
+void ViewController::fire()
+{
+    if(spaceShip){
+        spaceShip->fire();
+    }
+}
+
+void ViewController::moveSpaceShipRight()
+{
+    if( x() + spaceShip->boundingRect().width() <= 1370)
+        spaceShip->setPos(spaceShip->x() + 20 , spaceShip->y());
+}
+
+void ViewController::moveSpaceShipUp()
+{
+    if(y() >= 0)
+        spaceShip->setPos(spaceShip->x() , spaceShip->y() - 20);
+
+}
+
+void ViewController::moveSpaceShipDown()
+{
+    if( y()  < 580)
+        spaceShip->setPos(spaceShip->x() , spaceShip->y() + 20);
+}
+
+void ViewController::moveSpaceShipLeft()
+{
+
+    if( x() >= -20 )
+        spaceShip->setPos(spaceShip->x() - 20 , spaceShip->y());
+
+}
+
+
 

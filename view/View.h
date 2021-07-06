@@ -6,6 +6,7 @@
 #include <QGraphicsPixmapItem>
 #include <QGraphicsTextItem>
 #include <QGraphicsSceneMouseEvent>
+#include <QMouseEvent>
 #include <QObject>
 
 
@@ -19,7 +20,7 @@ public:
 
     static View * view;
 
-    ViewController * viewController ;
+    ViewController * viewController = nullptr;
 
     ~View();
 
@@ -27,10 +28,11 @@ public:
 
     void showMenu();
 
-//    void mousePressEvent(QGraphicsSceneMouseEvent * event);
+    void mousePressEvent(QMouseEvent *event) override;
 
+    void mouseMoveEvent(QMouseEvent *event) override;
 
-//    void keyPressEvent(QKeyEvent * event);
+    void keyPressEvent(QKeyEvent * event) override;
 
 
 

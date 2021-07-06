@@ -5,6 +5,7 @@
 #include <QGraphicsScene>
 #include <QGraphicsRectItem>
 #include <QGraphicsPixmapItem>
+#include <QMouseEvent>
 #include <QWidget>
 #include <QMediaPlayer>
 
@@ -27,13 +28,17 @@ private:
 public:
     static SpaceShip * getInstance();     /// creating the only instance of class
 
-    void keyPressEvent(QKeyEvent * event) ;
+//    void keyPressEvent(QKeyEvent * event) ;
 
 //    void mousePressEvent(QMouseEvent * event);
 
 //    void mouseMoveEvent(QMouseEvent * event) ;
 
+    void fire();
+
+
 signals:
+
 
 };
 

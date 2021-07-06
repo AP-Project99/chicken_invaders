@@ -13,7 +13,7 @@ private:
     QTimer * bulletTimer = new QTimer;
 
 public:
-    explicit Bullet(QGraphicsScene * scene);
+    explicit Bullet();
 
 signals:
 public slots:

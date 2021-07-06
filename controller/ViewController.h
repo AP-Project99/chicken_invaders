@@ -23,6 +23,7 @@ private:
     Play * play;
     Quit * quit;
     Chickens * chick;
+    SpaceShip * spaceShip = nullptr;
 
     QGraphicsScene * scene;
     QTimer * ctimer;
@@ -35,6 +36,16 @@ public:
     void setBackground(QString);
 
     void startMenu();
+
+    void fire();
+
+    void moveSpaceShipLeft();
+
+    void moveSpaceShipRight();
+
+    void moveSpaceShipUp();
+
+    void moveSpaceShipDown();
 
 public slots:
     void startGame();
