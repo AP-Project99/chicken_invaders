@@ -3,11 +3,15 @@
 #include <QMediaPlayer>
 #include <QList>
 
+QGraphicsScene * ViewController::scene = nullptr;
+
 ViewController::ViewController() : QObject()
 {
     scene = new QGraphicsScene;
     scene->setSceneRect(0,0,1350,650);
-//    View::getInstance()->setMouseTracking(true);
+
+    /// space ship controller
+    spaceShipController = SpaceShipController::getInstance();
 }
 
 ViewController::~ViewController()
@@ -22,34 +26,22 @@ void ViewController::setBackground(QString address){
 
 void ViewController::startGame()
 {
-    /// deleting objects
+    /// deleting objects and scene
     delete play;
     delete quit;
     scene->clear();
 
-    /// new window and items
+    /// new image for background
     scene->setBackgroundBrush(QBrush(QImage(":/images/gamebackground.jpg")));
-    spaceShip = SpaceShip::getInstance();
-    scene->addItem(spaceShip);
 
+    ////Creating and adding items to the scene
+    spaceShipController->addSpaceShip();
 
+    addScoreBoard();
 
-    //set score board
-    Score *cScore =new Score(scene);
-    scene->addItem(cScore);
-    cScore->setPos(10,-5);
+    addHeart();
 
-    //set heart on background
-    Heart *cHeart=new Heart(scene);
-    scene->addItem(cHeart);
-    cHeart->setPos(20,628);
-
-    // add chicken
-    QList<Chickens *> chick;
-    for (int i=1;i<=20 ;++i ) {
-        chick.push_back(new Chickens(i));
-        scene->addItem(chick[i-1]);
-    }
+    addChicken();
 }
 
 void ViewController::startMenu()
@@ -62,43 +54,35 @@ void ViewController::startMenu()
     scene->addItem(play);
     scene->addItem(quit);
 
-    connect(play , SIGNAL(clicked()), this, SLOT(startGame()));
-    connect(quit , SIGNAL(quitClicked()), View::getInstance(), SLOT(close()));
+    connect(play , SIGNAL(clicked()), this, SLOT(startGame()));   // if clicked at save the world the startgame func will execute.
+    connect(quit , SIGNAL(quitClicked()), View::getInstance(), SLOT(close()));     // if clicked at quit the view will get closed.
 }
 
-void ViewController::fire()
-{
-    if(spaceShip){
-        spaceShip->fire();
+/// Items crated and added to scene
+void ViewController::addChicken(){
+
+    for (int i = 1; i <= 20 ; ++i ) {
+        chickens.push_back(new Chickens(i));
+        scene->addItem(chickens[i-1]);
     }
 }
 
-void ViewController::moveSpaceShipRight()
+void ViewController::addHeart()
 {
-    if( x() + spaceShip->boundingRect().width() <= 1370)
-        spaceShip->setPos(spaceShip->x() + 20 , spaceShip->y());
+    heart = new Heart(scene);
+    scene->addItem(heart);
+    heart->setPos(20,628);
 }
 
-void ViewController::moveSpaceShipUp()
+void ViewController::addScoreBoard()
 {
-    if(y() >= 0)
-        spaceShip->setPos(spaceShip->x() , spaceShip->y() - 20);
-
+    score = new Score(scene);
+    scene->addItem(score);
+    score->setPos(10,-5);
 }
 
-void ViewController::moveSpaceShipDown()
-{
-    if( y()  < 580)
-        spaceShip->setPos(spaceShip->x() , spaceShip->y() + 20);
-}
 
-void ViewController::moveSpaceShipLeft()
-{
 
-    if( x() >= -20 )
-        spaceShip->setPos(spaceShip->x() - 20 , spaceShip->y());
-
-}
 
 
 

@@ -21,18 +21,13 @@ private:
     explicit SpaceShip();                   /// private constructor
 
     static SpaceShip * spaceShip;         /// the only object of this class
+
     QList <Bullet *> allBullets;
 
     QMediaPlayer *bulletSound;
 
 public:
     static SpaceShip * getInstance();     /// creating the only instance of class
-
-//    void keyPressEvent(QKeyEvent * event) ;
-
-//    void mousePressEvent(QMouseEvent * event);
-
-//    void mouseMoveEvent(QMouseEvent * event) ;
 
     void fire();
 
