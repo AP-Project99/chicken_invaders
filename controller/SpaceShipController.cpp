@@ -1,5 +1,5 @@
 #include "SpaceShipController.h"
-#include "ViewController.h"
+#include <QGraphicsScene>
 
 SpaceShipController::SpaceShipController()
 {
@@ -29,7 +29,6 @@ void SpaceShipController::fire()
     if(spaceShip)
         spaceShip->fire();
 }
-
 
 void SpaceShipController::moveSpaceShipRight()
 {

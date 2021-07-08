@@ -49,6 +49,7 @@ void View::mouseMoveEvent(QMouseEvent *event)
         QGraphicsView::mouseMoveEvent(event);
     }
 }
+
 void View::mousePressEvent(QMouseEvent *event)
 {
 

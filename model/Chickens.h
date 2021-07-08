@@ -31,6 +31,8 @@ public:
 
     void setChickenPos(int number);
 
+    void hitSpaceShip();
+
 signals:
 
 public slots:

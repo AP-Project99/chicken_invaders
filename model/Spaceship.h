@@ -8,6 +8,7 @@
 #include <QMouseEvent>
 #include <QWidget>
 #include <QMediaPlayer>
+#include "controller/SpaceShipController.h"
 
 
 //#include "view/View.h"
@@ -29,9 +30,9 @@ private:
 public:
     static SpaceShip * getInstance();     /// creating the only instance of class
 
+    void decrementLive();
+
     void fire();
-
-
 signals:
 
 

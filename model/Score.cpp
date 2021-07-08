@@ -2,9 +2,9 @@
 #include <QFont>
 #include <QGraphicsScene>
 
-Score::Score(int score,QGraphicsScene *scene)
+Score::Score(QGraphicsScene *scene)
 {
-    playerScore=score;
+    playerScore=0;
 
     //set text in score board
     setPlainText(QString::number(playerScore));
@@ -19,12 +19,8 @@ Score::Score(int score,QGraphicsScene *scene)
     scene->addItem(scoreBoard);
 }
 
-int Score::getPlayerScore() const
+void Score::increase()
 {
-    return playerScore;
-}
-
-void Score::setPlayerScore(int newPlayerScore)
-{
-    playerScore = newPlayerScore;
+    playerScore+=5;
+    setPlainText(QString::number(playerScore));
 }

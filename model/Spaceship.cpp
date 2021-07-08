@@ -1,9 +1,11 @@
 #include <QGraphicsPixmapItem>
 #include <QKeyEvent>
 #include <QWidget>
-
 #include "Spaceship.h"
 #include "Bullet.h"
+#include "Chickens.h"
+#include "controller/ViewController.h"
+#include "model/Heart.h"
 
 SpaceShip * SpaceShip::spaceShip = nullptr;
 
@@ -26,6 +28,11 @@ SpaceShip * SpaceShip::getInstance()
     return spaceShip;
 }
 
+void SpaceShip::decrementLive()
+{
+    Heart::decrease();
+}
+
 void SpaceShip::fire(){
     Bullet * bullet = new Bullet();
     allBullets.push_back(bullet);
@@ -41,5 +48,6 @@ void SpaceShip::fire(){
         bulletSound->play();
     }
 }
+
 
 
