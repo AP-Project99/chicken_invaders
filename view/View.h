@@ -9,8 +9,8 @@
 #include <QMouseEvent>
 #include <QObject>
 
-
 #include "controller/ViewController.h"
+#include "controller/SpaceShipController.h"
 
 class View : public QGraphicsView
 {    
@@ -21,6 +21,7 @@ public:
     static View * view;
 
     ViewController * viewController = nullptr;
+
 
     ~View();
 

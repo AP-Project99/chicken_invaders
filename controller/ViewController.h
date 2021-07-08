@@ -4,29 +4,36 @@
 #include <QObject>
 #include <QGraphicsScene>
 #include <QTimer>
-#include <model/Spaceship.h>
 #include <model/menu/Play.h>
 #include <model/menu/Quit.h>
 #include <model/Score.h>
 #include <model/Heart.h>
 #include <model/Chickens.h>
+#include "SpaceShipController.h"
 
 
 
-class ViewController : public QObject , public QGraphicsPixmapItem
+class ViewController : public QObject
 {
     Q_OBJECT
 
     friend class View;
+    friend class SpaceShipController;
 
 private:
     Play * play;
     Quit * quit;
-    Chickens * chick;
-    SpaceShip * spaceShip = nullptr;
 
-    QGraphicsScene * scene;
+    Chickens * chick;
+    QList<Chickens *> chickens;
+
+    SpaceShipController * spaceShipController;
+
+    static QGraphicsScene * scene;
     QTimer * ctimer;
+
+    Heart * heart;
+    Score * score;
 
 public:
     explicit ViewController();
@@ -37,15 +44,12 @@ public:
 
     void startMenu();
 
-    void fire();
+    void addChicken();
 
-    void moveSpaceShipLeft();
+    void addHeart();
 
-    void moveSpaceShipRight();
+    void addScoreBoard();
 
-    void moveSpaceShipUp();
-
-    void moveSpaceShipDown();
 
 public slots:
     void startGame();

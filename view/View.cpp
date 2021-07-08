@@ -9,11 +9,13 @@ View::View() : QGraphicsView()
 {
     /// set the scene to view
     viewController = new ViewController;
-    setScene(viewController->scene);
+    setScene(ViewController::scene);
 
-//    this->setFixedSize(1352,663);
-//    setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-//    setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
+    this->setFixedSize(1352,663);
+    setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
 
     setMouseTracking(true);
 
@@ -41,9 +43,8 @@ void View::showMenu()
 void View::mouseMoveEvent(QMouseEvent *event)
 {
 
-    if(viewController->spaceShip)
-        viewController->spaceShip->setPos(event->pos());
-
+    if(viewController->spaceShipController->spaceShip)
+        viewController->spaceShipController->spaceShip->setPos(event->pos());
     else {
         QGraphicsView::mouseMoveEvent(event);
     }
@@ -51,34 +52,33 @@ void View::mouseMoveEvent(QMouseEvent *event)
 void View::mousePressEvent(QMouseEvent *event)
 {
 
-    if(viewController->spaceShip){
-
+    if(viewController->spaceShipController->spaceShip){
         if(event->button() == Qt::LeftButton)
-            viewController->fire();
+            viewController->spaceShipController->fire();
     }
-    else {
+    else
         QGraphicsView::mousePressEvent(event);
-    }
+
 }
 
 void View::keyPressEvent(QKeyEvent *event)
 {
 
-    if(viewController->spaceShip != nullptr){
+    if(viewController->spaceShipController->spaceShip != nullptr){
         if(event->key() == Qt::Key_Left )
-            viewController->moveSpaceShipLeft();
+            viewController->spaceShipController->moveSpaceShipLeft();
 
         if(event->key() == Qt::Key_Right )
-            viewController->moveSpaceShipRight();
+            viewController->spaceShipController->moveSpaceShipRight();
 
         if(event->key() == Qt::Key_Up )
-            viewController->moveSpaceShipUp();
+            viewController->spaceShipController->moveSpaceShipUp();
 
         if(event->key() == Qt::Key_Down )
-            viewController->moveSpaceShipDown();
+            viewController->spaceShipController->moveSpaceShipDown();
 
         if(event->key() == Qt::Key_Space)
-            viewController->fire();
+            viewController->spaceShipController->fire();
     }
     else {
         QGraphicsView::keyPressEvent(event);
