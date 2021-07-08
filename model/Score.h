@@ -12,6 +12,8 @@ private:
 public:
     explicit Score(QGraphicsScene *scene);
 
+    void increase();
+
 signals:
 
 };

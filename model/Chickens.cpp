@@ -2,9 +2,12 @@
 #include <QDebug>
 #include <QGraphicsScene>
 #include <QList>
+#include "controller/SpaceShipController.h"
 
-Chickens::Chickens(int number) : QObject() , QGraphicsPixmapItem()
+
+Chickens::Chickens(int number,Score *scr) : QObject() , QGraphicsPixmapItem()
 {
+    score=scr;
 
     setPixmap(QPixmap(":/images/oneChicken1.png"));
     setChickenPos(number);
@@ -44,6 +47,7 @@ void Chickens::setImage()
 
 void Chickens::moveChicken()
 {
+    hitSpaceShip();
     if( x() > 0  && goingLeft)
         setPos(x() - 10, y() );
 
@@ -60,8 +64,21 @@ void Chickens::decrementChicken()
 {
     --lives;
     if(lives==0){
+
+        score->increase();
+
         scene()->removeItem(this);
         delete this;
+    }
+}
+
+void Chickens::hitSpaceShip()
+{
+    QList<QGraphicsItem *> collindingList=collidingItems();
+    for(int i=0;i<collindingList.size();++i){
+        if(typeid (*(collindingList[i]))==typeid (SpaceShip)){
+            dynamic_cast<SpaceShip *>(collindingList[i])->decrementLive();
+        }
     }
 }
 
@@ -90,3 +107,5 @@ void Chickens::setChickenPos(int number)
     case 20:setPos(620,280);break;
     }
 }
+
+
