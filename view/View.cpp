@@ -1,4 +1,4 @@
-#include "view.h"
+#include "View.h"
 #include <QMediaPlayer>
 #include <QMediaPlaylist>
 #include <QDebug>
@@ -12,7 +12,7 @@ View::View() : QGraphicsView()
     setScene(ViewController::scene);
 
 
-    this->setFixedSize(1352,663);
+    this->setFixedSize(1350,650);
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 

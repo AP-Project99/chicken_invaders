@@ -3,8 +3,9 @@
 #include <QGraphicsScene>
 #include <QList>
 
-Chickens::Chickens(int number) : QObject() , QGraphicsPixmapItem()
+Chickens::Chickens(int number,Score *scr) : QObject() , QGraphicsPixmapItem()
 {
+    score=scr;
 
     setPixmap(QPixmap(":/images/oneChicken1.png"));
     setChickenPos(number);
@@ -60,6 +61,10 @@ void Chickens::decrementChicken()
 {
     --lives;
     if(lives==0){
+        score->setPlayerScore(score->getPlayerScore()+5);
+        score=new Score(score->getPlayerScore()+5,scene());
+        scene()->addItem(score);
+
         scene()->removeItem(this);
         delete this;
     }
@@ -90,3 +95,4 @@ void Chickens::setChickenPos(int number)
     case 20:setPos(620,280);break;
     }
 }
+

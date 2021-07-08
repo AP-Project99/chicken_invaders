@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QGraphicsPixmapItem>
 #include <QTimer>
+#include "Score.h"
 
 class Chickens : public QObject , public QGraphicsPixmapItem
 {
@@ -18,9 +19,11 @@ private:
 
     int lives=1;
 
+    Score *score;
+
 public:
 
-    explicit Chickens(int number);
+    explicit Chickens(int number,Score *scr);
 
     void setImage();
 

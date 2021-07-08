@@ -13,6 +13,6 @@ Heart::Heart(QGraphicsScene *scene) : heart(3)
     //set picture heart
     QGraphicsPixmapItem *scoreBoard=new QGraphicsPixmapItem();
     scoreBoard->setPixmap(QPixmap(":/images/heart.png"));
-    scoreBoard->setPos(0,630);
+    scoreBoard->setPos(0,622);
     scene->addItem(scoreBoard);
 }

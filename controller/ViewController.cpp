@@ -60,9 +60,10 @@ void ViewController::startMenu()
 
 /// Items crated and added to scene
 void ViewController::addChicken(){
+    score->setPlayerScore(score->getPlayerScore()-5);
 
     for (int i = 1; i <= 20 ; ++i ) {
-        chickens.push_back(new Chickens(i));
+        chickens.push_back(new Chickens(i,score));
         scene->addItem(chickens[i-1]);
     }
 }
@@ -71,14 +72,13 @@ void ViewController::addHeart()
 {
     heart = new Heart(scene);
     scene->addItem(heart);
-    heart->setPos(20,628);
+    heart->setPos(20,620);
 }
 
 void ViewController::addScoreBoard()
 {
-    score = new Score(scene);
+    score = new Score(0,scene);
     scene->addItem(score);
-    score->setPos(10,-5);
 }
 
 
