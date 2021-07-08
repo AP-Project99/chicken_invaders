@@ -12,7 +12,7 @@
 #include "SpaceShipController.h"
 
 
-
+class SpaceShipController;
 class ViewController : public QObject
 {
     Q_OBJECT
@@ -32,10 +32,11 @@ private:
     static QGraphicsScene * scene;
     QTimer * ctimer;
 
-    Heart * heart;
     Score * score;
+    Heart *heart;
 
 public:
+
     explicit ViewController();
 
     ~ViewController();

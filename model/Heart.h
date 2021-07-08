@@ -8,9 +8,14 @@ class Heart : public QGraphicsTextItem
 {
     Q_OBJECT
 private:
-    int heart;
+
+    static int heartPlayer;
+
 public:
+
     explicit Heart(QGraphicsScene *scene);
+
+    static void decrease();
 
 signals:
 

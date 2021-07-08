@@ -3,7 +3,9 @@
 
 #include <QObject>
 #include "model/Spaceship.h"
+#include "ViewController.h"
 
+class SpaceShip;
 class SpaceShipController : public QObject
 {
     Q_OBJECT
@@ -11,7 +13,7 @@ class SpaceShipController : public QObject
     friend class View;
 
 private:
-    SpaceShip * spaceShip = nullptr;
+    SpaceShip * spaceShip=nullptr;
 
     static SpaceShipController * spaceShipController;
 
@@ -31,8 +33,6 @@ public:
     void moveSpaceShipUp();
 
     void moveSpaceShipDown();
-
-
 };
 
 #endif // SPACESHIPCONTROLLER_H
