@@ -2,10 +2,9 @@
 #include <QFont>
 #include <QGraphicsScene>
 
-int Heart::heartPlayer=3;
-
 Heart::Heart(QGraphicsScene *scene)
 {
+    heartPlayer=3;
     //set text in board heart
     setPlainText(QString::number(heartPlayer));
     setDefaultTextColor(Qt::white);
@@ -21,10 +20,8 @@ Heart::Heart(QGraphicsScene *scene)
 
 void Heart::decrease()
 {
-    heartPlayer--;
-
-    QGraphicsTextItem *txt=new QGraphicsTextItem();
-    txt->setPlainText(QString::number(heartPlayer));
+    --heartPlayer;
+    setPlainText(QString::number(heartPlayer));
 
     if(heartPlayer==0)
         exit(1);

@@ -60,8 +60,9 @@ void ViewController::startMenu()
 
 /// Items crated and added to scene
 void ViewController::addChicken(){
+    QList<Chickens *> chickens;
     for (int i = 1; i <= 20 ; ++i ) {
-        chickens.push_back(new Chickens(i,score));
+        chickens.push_back(new Chickens(i,score,heart,spaceShipController));
         scene->addItem(chickens[i-1]);
     }
 }

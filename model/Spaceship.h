@@ -9,7 +9,7 @@
 #include <QWidget>
 #include <QMediaPlayer>
 #include "controller/SpaceShipController.h"
-
+#include "Heart.h"
 
 //#include "view/View.h"
 #include "Bullet.h"
@@ -29,8 +29,6 @@ private:
 
 public:
     static SpaceShip * getInstance();     /// creating the only instance of class
-
-    void decrementLive();
 
     void fire();
 signals:

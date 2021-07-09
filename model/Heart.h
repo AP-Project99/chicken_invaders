@@ -9,13 +9,13 @@ class Heart : public QGraphicsTextItem
     Q_OBJECT
 private:
 
-    static int heartPlayer;
+    int heartPlayer;
 
 public:
 
     explicit Heart(QGraphicsScene *scene);
 
-    static void decrease();
+    void decrease();
 
 signals:
 
