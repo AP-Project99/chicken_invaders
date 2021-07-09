@@ -11,7 +11,6 @@
 #include <model/Chickens.h>
 #include "SpaceShipController.h"
 
-
 class SpaceShipController;
 class ViewController : public QObject
 {
@@ -23,9 +22,6 @@ class ViewController : public QObject
 private:
     Play * play;
     Quit * quit;
-
-    Chickens * chick;
-    QList<Chickens *> chickens;
 
     SpaceShipController * spaceShipController;
 

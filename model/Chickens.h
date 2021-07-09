@@ -5,7 +5,10 @@
 #include <QGraphicsPixmapItem>
 #include <QTimer>
 #include "Score.h"
+#include "Heart.h"
+#include "controller/SpaceShipController.h"
 
+class SpaceShipController;
 class Chickens : public QObject , public QGraphicsPixmapItem
 {
     Q_OBJECT
@@ -20,10 +23,12 @@ private:
     int lives=1;
 
     Score *score;
+    Heart *heart;
+    SpaceShipController *spaceship;
 
 public:
 
-    explicit Chickens(int number,Score *scr);
+    explicit Chickens(int number,Score *scr,Heart *hrt,SpaceShipController *s);
 
     void setImage();
 

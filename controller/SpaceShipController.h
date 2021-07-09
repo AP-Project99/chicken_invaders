@@ -22,7 +22,7 @@ private:
 public:
     static SpaceShipController * getInstance ();
 
-    void addSpaceShip();
+    void removeSpaceShip();
 
     void fire();
 
@@ -33,6 +33,10 @@ public:
     void moveSpaceShipUp();
 
     void moveSpaceShipDown();
+
+public slots:
+
+    void addSpaceShip();
 };
 
 #endif // SPACESHIPCONTROLLER_H
