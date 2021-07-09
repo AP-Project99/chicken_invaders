@@ -23,12 +23,12 @@ private:
     int lives=1;
 
     Score *score;
-    Heart *heart;
-    SpaceShipController *spaceship;
+
+
 
 public:
 
-    explicit Chickens(int number,Score *scr,Heart *hrt,SpaceShipController *s);
+    explicit Chickens(int number,Score *scr);
 
     void setImage();
 
@@ -36,7 +36,7 @@ public:
 
     void setChickenPos(int number);
 
-    void hitSpaceShip();
+
 
 signals:
 

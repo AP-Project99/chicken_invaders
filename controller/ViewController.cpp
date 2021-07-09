@@ -62,14 +62,14 @@ void ViewController::startMenu()
 void ViewController::addChicken(){
     QList<Chickens *> chickens;
     for (int i = 1; i <= 20 ; ++i ) {
-        chickens.push_back(new Chickens(i,score,heart,spaceShipController));
+        chickens.push_back(new Chickens(i,score));
         scene->addItem(chickens[i-1]);
     }
 }
 
 void ViewController::addHeart()
 {
-    heart = new Heart(scene);
+    heart = Heart::getInstance();
     scene->addItem(heart);
 }
 

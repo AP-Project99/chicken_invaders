@@ -1,12 +1,15 @@
 #include "Heart.h"
 #include <QFont>
 #include <QGraphicsScene>
+#include <controller/ViewController.h>
 
-Heart::Heart(QGraphicsScene *scene)
+Heart * Heart::heart = nullptr;     /// initializing static member
+
+Heart::Heart()
 {
-    heartPlayer=3;
+    spaceShipHeart=3;
     //set text in board heart
-    setPlainText(QString::number(heartPlayer));
+    setPlainText(QString::number(spaceShipHeart));
     setDefaultTextColor(Qt::white);
     setFont(QFont("segoe script",15));
     setPos(20,620);
@@ -15,16 +18,23 @@ Heart::Heart(QGraphicsScene *scene)
     QGraphicsPixmapItem *scoreBoard=new QGraphicsPixmapItem();
     scoreBoard->setPixmap(QPixmap(":/images/heart.png"));
     scoreBoard->setPos(0,622);
-    scene->addItem(scoreBoard);
+    ViewController::scene->addItem(scoreBoard);
+}
+
+Heart *Heart::getInstance()
+{
+    if(heart == nullptr)
+        heart = new Heart;
+    return heart;
 }
 
 void Heart::decrease()
 {
-    --heartPlayer;
-    setPlainText(QString::number(heartPlayer));
+    --spaceShipHeart;
+    setPlainText(QString::number(spaceShipHeart));
 
 
-    if(heartPlayer == 0)
+    if(spaceShipHeart == 0)
         exit(1);
 }
 

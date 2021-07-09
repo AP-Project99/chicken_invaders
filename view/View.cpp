@@ -45,6 +45,7 @@ void View::mouseMoveEvent(QMouseEvent *event)
 
     if(viewController->spaceShipController->spaceShip){
         viewController->spaceShipController->spaceShip->setPos(event->pos());
+        viewController->spaceShipController->spaceShip->hitChicken();
     }
     else {
         QGraphicsView::mouseMoveEvent(event);

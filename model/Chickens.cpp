@@ -4,12 +4,10 @@
 #include <QList>
 #include <QThread>
 
-Chickens::Chickens(int number,Score *scr,Heart *hrt,SpaceShipController *s)
+Chickens::Chickens(int number, Score *scr)
     : QObject() , QGraphicsPixmapItem()
 {
     score=scr;
-    heart=hrt;
-    spaceship=s;
 
     setPixmap(QPixmap(":/images/oneChicken1.png"));
     setChickenPos(number);
@@ -49,7 +47,7 @@ void Chickens::setImage()
 
 void Chickens::moveChicken()
 {
-    hitSpaceShip();
+
     if( x() > 0  && goingLeft)
         setPos(x() - 10, y() );
 
@@ -74,23 +72,23 @@ void Chickens::decrementChicken()
     }
 }
 
-void Chickens::hitSpaceShip()
-{
-    QList<QGraphicsItem *> collindingList = collidingItems();
-    for(int i=0; i < collindingList.size(); ++i){
-        if(typeid (*(collindingList[i])) == typeid (SpaceShip)){
+//void Chickens::hitSpaceShip()
+//{
+//    QList<QGraphicsItem *> collindingList = collidingItems();
+//    for(int i=0; i < collindingList.size(); ++i){
+//        if(typeid (*(collindingList[i])) == typeid (SpaceShip)){
 
-            heart->decrease();
-            spaceship->removeSpaceShip();
-            QTimer *t=new QTimer();
-            t->setSingleShot(true);
-            t->setInterval(3000);
-            connect(t, &QTimer::timeout, this, [=](){spaceship->addSpaceShip();});
-            t->start();
+//            heart->decrease();
+//            spaceship->removeSpaceShip();
+//            QTimer *t=new QTimer();
+//            t->setSingleShot(true);
+//            t->setInterval(3000);
+//            connect(t, &QTimer::timeout, this, [=](){spaceship->addSpaceShip();});
+//            t->start();
 
-        }
-    }
-}
+//        }
+//    }
+//}
 
 void Chickens::setChickenPos(int number)
 {

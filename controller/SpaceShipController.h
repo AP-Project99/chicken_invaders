@@ -11,9 +11,10 @@ class SpaceShipController : public QObject
     Q_OBJECT
 
     friend class View;
+    friend class SpaceShip;
 
 private:
-    SpaceShip *  spaceShip = nullptr;
+    SpaceShip * spaceShip = nullptr;
 
     static SpaceShipController * spaceShipController;
 
@@ -21,10 +22,6 @@ private:
 
 public:
     static SpaceShipController * getInstance ();
-
-    void removeSpaceShip();
-
-
 
     void fire();
 
@@ -36,9 +33,13 @@ public:
 
     void moveSpaceShipDown();
 
+    void removeSpaceShip();
+
 public slots:
 
     void addSpaceShip();
+
+
 };
 
 #endif // SPACESHIPCONTROLLER_H
