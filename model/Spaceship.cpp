@@ -30,6 +30,7 @@ SpaceShip * SpaceShip::getInstance()
 
 void SpaceShip::decrementLive()
 {
+
     Heart::decrease();
 }
 

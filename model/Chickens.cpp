@@ -74,10 +74,11 @@ void Chickens::decrementChicken()
 
 void Chickens::hitSpaceShip()
 {
-    QList<QGraphicsItem *> collindingList=collidingItems();
-    for(int i=0;i<collindingList.size();++i){
+    QList<QGraphicsItem *> collindingList = collidingItems();
+    for(int i=0; i<collindingList.size(); ++i){
         if(typeid (*(collindingList[i]))==typeid (SpaceShip)){
             dynamic_cast<SpaceShip *>(collindingList[i])->decrementLive();
+
         }
     }
 }

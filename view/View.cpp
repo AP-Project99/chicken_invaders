@@ -43,8 +43,9 @@ void View::showMenu()
 void View::mouseMoveEvent(QMouseEvent *event)
 {
 
-    if(viewController->spaceShipController->spaceShip)
+    if(viewController->spaceShipController->spaceShip){
         viewController->spaceShipController->spaceShip->setPos(event->pos());
+    }
     else {
         QGraphicsView::mouseMoveEvent(event);
     }

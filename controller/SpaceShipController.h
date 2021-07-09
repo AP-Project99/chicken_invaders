@@ -15,6 +15,7 @@ class SpaceShipController : public QObject
 private:
     SpaceShip * spaceShip=nullptr;
 
+
     static SpaceShipController * spaceShipController;
 
     SpaceShipController();
@@ -23,6 +24,8 @@ public:
     static SpaceShipController * getInstance ();
 
     void addSpaceShip();
+
+
 
     void fire();
 

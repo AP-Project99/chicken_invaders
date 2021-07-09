@@ -26,7 +26,8 @@ void Heart::decrease()
     QGraphicsTextItem *txt=new QGraphicsTextItem();
     txt->setPlainText(QString::number(heartPlayer));
 
-    if(heartPlayer==0)
+
+    if(heartPlayer == 0)
         exit(1);
 }
 

@@ -12,6 +12,7 @@ private:
     static int heartPlayer;
 
 public:
+    QGraphicsTextItem *txt ;
 
     explicit Heart(QGraphicsScene *scene);
 
