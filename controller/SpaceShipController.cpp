@@ -24,6 +24,16 @@ void SpaceShipController::addSpaceShip()
     spaceShip->setPos(600 , 550);
 }
 
+void SpaceShipController::removeSpaceShip(){
+    ViewController::scene->removeItem(spaceShip);
+    SpaceShip::spaceShip == nullptr;
+//    delete SpaceShip::spaceShip;
+//    spaceShip->spaceShip == nullptr;
+//    delete spaceShip->spaceShip;
+//    spaceShip == nullptr;
+
+}
+
 void SpaceShipController::fire()
 {
     if(spaceShip)

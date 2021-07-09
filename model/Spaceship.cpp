@@ -28,12 +28,6 @@ SpaceShip * SpaceShip::getInstance()
     return spaceShip;
 }
 
-void SpaceShip::decrementLive()
-{
-
-    Heart::decrease();
-}
-
 void SpaceShip::fire(){
     Bullet * bullet = new Bullet();
     allBullets.push_back(bullet);

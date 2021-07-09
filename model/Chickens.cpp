@@ -2,12 +2,14 @@
 #include <QDebug>
 #include <QGraphicsScene>
 #include <QList>
-#include "controller/SpaceShipController.h"
+#include <QThread>
 
-
-Chickens::Chickens(int number,Score *scr) : QObject() , QGraphicsPixmapItem()
+Chickens::Chickens(int number,Score *scr,Heart *hrt,SpaceShipController *s)
+    : QObject() , QGraphicsPixmapItem()
 {
     score=scr;
+    heart=hrt;
+    spaceship=s;
 
     setPixmap(QPixmap(":/images/oneChicken1.png"));
     setChickenPos(number);
@@ -63,7 +65,7 @@ void Chickens::moveChicken()
 void Chickens::decrementChicken()
 {
     --lives;
-    if(lives==0){
+    if(lives == 0){
 
         score->increase();
 
@@ -75,9 +77,16 @@ void Chickens::decrementChicken()
 void Chickens::hitSpaceShip()
 {
     QList<QGraphicsItem *> collindingList = collidingItems();
-    for(int i=0; i<collindingList.size(); ++i){
-        if(typeid (*(collindingList[i]))==typeid (SpaceShip)){
-            dynamic_cast<SpaceShip *>(collindingList[i])->decrementLive();
+    for(int i=0; i < collindingList.size(); ++i){
+        if(typeid (*(collindingList[i])) == typeid (SpaceShip)){
+
+            heart->decrease();
+            spaceship->removeSpaceShip();
+            QTimer *t=new QTimer();
+            t->setSingleShot(true);
+            t->setInterval(3000);
+            connect(t, &QTimer::timeout, this, [=](){spaceship->addSpaceShip();});
+            t->start();
 
         }
     }
