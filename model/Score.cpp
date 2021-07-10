@@ -1,10 +1,12 @@
 #include "Score.h"
 #include <QFont>
 #include <QGraphicsScene>
+#include <controller/ViewController.h>
 
-Score::Score(QGraphicsScene *scene)
+
+Score::Score()
 {
-    playerScore=0;
+    playerScore = 0;
 
     //set text in score board
     setPlainText(QString::number(playerScore));
@@ -13,14 +15,24 @@ Score::Score(QGraphicsScene *scene)
     setPos(10,-8);
 
     //set picture score board
-    QGraphicsPixmapItem *scoreBoard=new QGraphicsPixmapItem();
+    scoreBoard = new QGraphicsPixmapItem();
     scoreBoard->setPixmap(QPixmap(":/images/score.png"));
     scoreBoard->setPos(0,0);
-    scene->addItem(scoreBoard);
+    ViewController::scene->addItem(scoreBoard);
+
+}
+
+Score * Score::score = nullptr;
+
+Score *Score::getInstance()
+{
+    if(score == nullptr)
+        score = new Score;
+    return score;
 }
 
 void Score::increase()
 {
-    playerScore+=5;
+    playerScore += 5;
     setPlainText(QString::number(playerScore));
 }

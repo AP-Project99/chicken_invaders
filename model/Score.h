@@ -8,9 +8,16 @@ class Score: public QGraphicsTextItem
 {
     Q_OBJECT
 private:
+    explicit Score();
+
+    static Score * score;
+
     int playerScore;
+
+    QGraphicsPixmapItem * scoreBoard;
+
 public:
-    explicit Score(QGraphicsScene *scene);
+    static Score * getInstance();
 
     void increase();
 
