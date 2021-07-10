@@ -28,10 +28,9 @@ private:
     Score *score;
 
 
-
 public:
 
-    explicit Chickens(int number,Score *scr);
+    explicit Chickens(int number,int level,Score *scr);
 
     void setImage();
 
@@ -39,7 +38,12 @@ public:
 
     void setChickenPos(int number);
 
+    void setChickenPos2(int number);
 
+    static int total;
+
+    int getTotal() const;
+    void setTotal(int newTotal);
 
 signals:
 

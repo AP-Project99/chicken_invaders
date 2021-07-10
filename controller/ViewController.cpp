@@ -60,10 +60,19 @@ void ViewController::startMenu()
 
 /// Items crated and added to scene
 void ViewController::addChicken(){
+
     QList<Chickens *> chickens;
-    for (int i = 1; i <= 20 ; ++i ) {
-        chickens.push_back(new Chickens(i,score));
-        scene->addItem(chickens[i-1]);
+    for (int i = 0; i < 20 ; ++i ) {
+        chickens.push_back(new Chickens(i,1,score));
+        scene->addItem(chickens[i]);
+    }
+
+    QList<Chickens *> chickens2;
+    if(chickens[0]->getTotal()==0){
+        for (int i = 0; i < 20 ; ++i ) {
+            chickens2.push_back(new Chickens(i,2,score));
+            scene->addItem(chickens2[i]);
+        }
     }
 }
 

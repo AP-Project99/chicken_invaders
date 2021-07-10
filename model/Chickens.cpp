@@ -4,13 +4,19 @@
 #include <QList>
 #include <QThread>
 
-Chickens::Chickens(int number, Score *scr)
+int Chickens::total=20;
+
+Chickens::Chickens(int number,int level, Score *scr)
     : QObject() , QGraphicsPixmapItem()
 {
     score=scr;
+    setTotal(20);
 
     setPixmap(QPixmap(":/images/oneChicken1.png"));
-    setChickenPos(number);
+    if(level==1)
+        setChickenPos(number);
+    if(level==2)
+        setChickenPos2(number);
 
     //for animated image
     chickenTimer = new QTimer;
@@ -67,126 +73,62 @@ void Chickens::decrementChicken()
 
         score->increase();
 
+        total--;
         scene()->removeItem(this);
         delete this;
     }
 }
 
+int Chickens::getTotal() const
+{
+    return total;
+}
+
+void Chickens::setTotal(int newTotal)
+{
+    total =newTotal;
+}
+
 void Chickens::setChickenPos(int number)
 {
-    switch (number) {
-    case 1:
-        setPos(300,100);
-        limitLeft = 0;
-        limitRight = 1030;
-        break;
-    case 2:
-        setPos(380,100);
-        limitLeft = 80;
-        limitRight = 1110;
-        break;
-    case 3:
-        setPos(460,100);
-        limitLeft = 160;
-        limitRight = 1190;
-        break;
-    case 4:
-        setPos(540,100);
-        limitLeft = 240;
-        limitRight = 1270;
-        break;
-    case 5:
-        setPos(620,100);
-        limitLeft = 320;
-        limitRight = 1350;
-        break;
-    case 6:
-        setPos(300,160);
-        limitLeft = 0;
-        limitRight = 1030;
-        break;
-    case 7:
-        setPos(380,160);
-        limitLeft = 80;
-        limitRight = 1110;
-        break;
-    case 8:
-        setPos(460,160);
-        limitLeft = 160;
-        limitRight = 1190;
-        break;
-    case 9:
-        setPos(540,160);
-        limitLeft = 240;
-        limitRight = 1270;
-        break;
-    case 10:
-        setPos(620,160);
-        limitLeft = 320;
-        limitRight = 1350;
+    int x;
+    int y;
 
-        break;
-    case 11:
-        setPos(300,220);
-        limitLeft = 0;
-        limitRight = 1030;
+    if(number<5)
+        y=100;
+    if(number>=5&&number<10)
+        y=160;
+    if(number>=10&&number<15)
+        y=220;
+    if(number>=15&&number<20)
+        y=280;
 
-        break;
-    case 12:
-        setPos(380,220);
-        limitLeft = 80;
-        limitRight = 1110;
+    number%=5;
+    x=1350+(number)*80;
+    setPos(x,y);
+    limitLeft=x-1350;
+    limitRight=1350-(4-number)*80;
+}
 
-        break;
-    case 13:
-        setPos(460,220);
-        limitLeft = 160;
-        limitRight = 1190;
+void Chickens::setChickenPos2(int number)
+{
+    int x;
+    int y;
 
-        break;
-    case 14:
-        setPos(540,220);
-        limitLeft = 240;
-        limitRight = 1270;
+    if(number<9)
+        y=100;
+    if(number>=9&&number<18)
+        y=160;
+    if(number>=18&&number<27)
+        y=220;
+    if(number>=27&&number<36)
+        y=280;
 
-        break;
-    case 15:
-        setPos(620,220);
-        limitLeft = 320;
-        limitRight = 1350;
-
-        break;
-    case 16:
-        setPos(300,280);
-        limitLeft = 0;
-        limitRight = 1030;
-
-        break;
-    case 17:
-        setPos(380,280);
-
-        limitLeft = 80;
-        limitRight = 1110;
-        break;
-    case 18:
-        setPos(460,280);
-        limitLeft = 160;
-        limitRight = 1190;
-
-        break;
-    case 19:
-        setPos(540,280);
-        limitLeft = 240;
-        limitRight = 1270;
-
-        break;
-    case 20:
-        setPos(620,280);
-        limitLeft = 320;
-        limitRight = 1350;
-
-        break;
-    }
+    number%=9;
+    x=1350+(number)*80;
+    setPos(x,y);
+    limitLeft=x-1350;
+    limitRight=1350-(8-number)*80;
 }
 
 

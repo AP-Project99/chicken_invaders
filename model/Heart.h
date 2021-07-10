@@ -16,14 +16,15 @@ private:
     static Heart * heart;
 
 public:
-    QGraphicsTextItem *txt ;
 
     static Heart * getInstance();
-
 
     void decrease();
 
 signals:
+
+public slots:
+    void quit();
 
 };
 

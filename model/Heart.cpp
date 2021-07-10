@@ -2,6 +2,7 @@
 #include <QFont>
 #include <QGraphicsScene>
 #include <controller/ViewController.h>
+#include <QThread>
 
 Heart * Heart::heart = nullptr;     /// initializing static member
 
@@ -12,11 +13,11 @@ Heart::Heart()
     setPlainText(QString::number(spaceShipHeart));
     setDefaultTextColor(Qt::white);
     setFont(QFont("segoe script",15));
-    setPos(20,620);
+    setPos(22,618);
 
     //set picture heart
     QGraphicsPixmapItem *scoreBoard=new QGraphicsPixmapItem();
-    scoreBoard->setPixmap(QPixmap(":/images/heart.png"));
+    scoreBoard->setPixmap(QPixmap(":/images/health-meet.png"));
     scoreBoard->setPos(0,622);
     ViewController::scene->addItem(scoreBoard);
 }
@@ -34,7 +35,22 @@ void Heart::decrease()
     setPlainText(QString::number(spaceShipHeart));
 
 
-    if(spaceShipHeart == 0)
-        exit(1);
+    if(spaceShipHeart == 0){
+
+        QGraphicsPixmapItem *gameover=new QGraphicsPixmapItem();
+        gameover->setPixmap(QPixmap(":/images/gameOver.png"));
+        gameover->setPos(550,300);
+        ViewController::scene->addItem(gameover);
+
+        QTimer *exitTimer=new QTimer();
+        exitTimer->setSingleShot(true);
+        connect( exitTimer, SIGNAL(timeout()),this, SLOT(quit()));
+        exitTimer->start(3000);
+    }
+}
+
+void Heart::quit()
+{
+    exit(1);
 }
 
