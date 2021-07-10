@@ -12,7 +12,7 @@ Heart::Heart()
     setPlainText(QString::number(spaceShipHeart));
     setDefaultTextColor(Qt::white);
     setFont(QFont("segoe script",15));
-    setPos(20,620);
+    setPos(20,615);
 
     //set picture heart
     QGraphicsPixmapItem *scoreBoard=new QGraphicsPixmapItem();

@@ -26,7 +26,6 @@ void Bullet::move()
         }
     }
 
-
     setPos(x(), y() - 10);
     if(y()==0){
         scene()->removeItem(this);

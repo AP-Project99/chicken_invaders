@@ -47,10 +47,11 @@ void Chickens::setImage()
 
 void Chickens::moveChicken()
 {
-
+    /// if chickens going left and pos is greater than left limitation -> go left
     if( x() > limitLeft  && goingLeft){
         setPos(x() - 10, y() );
 
+   /// if chickens going right and pos + width of chicken (the right pos of chicken) is lower than right limitation -> go right
     } else if(  x() + boundingRect().width() < limitRight ){
          setPos(x() + 10, y() );
          goingLeft = false;
@@ -72,7 +73,7 @@ void Chickens::decrementChicken()
     }
 }
 
-void Chickens::setChickenPos(int number)
+void Chickens::setChickenPos(int number)    //set the position and the limitation of every chicken movement
 {
     switch (number) {
     case 1:
@@ -124,47 +125,39 @@ void Chickens::setChickenPos(int number)
         setPos(620,160);
         limitLeft = 320;
         limitRight = 1350;
-
         break;
     case 11:
         setPos(300,220);
         limitLeft = 0;
         limitRight = 1030;
-
         break;
     case 12:
         setPos(380,220);
         limitLeft = 80;
         limitRight = 1110;
-
         break;
     case 13:
         setPos(460,220);
         limitLeft = 160;
         limitRight = 1190;
-
         break;
     case 14:
         setPos(540,220);
         limitLeft = 240;
         limitRight = 1270;
-
         break;
     case 15:
         setPos(620,220);
         limitLeft = 320;
         limitRight = 1350;
-
         break;
     case 16:
         setPos(300,280);
         limitLeft = 0;
         limitRight = 1030;
-
         break;
     case 17:
         setPos(380,280);
-
         limitLeft = 80;
         limitRight = 1110;
         break;
@@ -172,19 +165,16 @@ void Chickens::setChickenPos(int number)
         setPos(460,280);
         limitLeft = 160;
         limitRight = 1190;
-
         break;
     case 19:
         setPos(540,280);
         limitLeft = 240;
         limitRight = 1270;
-
         break;
     case 20:
         setPos(620,280);
         limitLeft = 320;
         limitRight = 1350;
-
         break;
     }
 }
