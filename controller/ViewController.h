@@ -11,7 +11,7 @@
 #include <model/Chickens.h>
 #include "SpaceShipController.h"
 
-//class SpaceShipController;
+class SpaceShipController;
 
 class ViewController : public QObject
 {

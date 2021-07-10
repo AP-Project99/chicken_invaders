@@ -18,6 +18,9 @@ private:
 
     bool goingLeft = true;
 
+    int limitLeft;
+    int limitRight;
+
     int imageTimer = 0;
 
     int lives=1;
