@@ -4,15 +4,19 @@
 #include <QList>
 #include <QThread>
 
-Chickens::Chickens(int number,Score *scr,Heart *hrt,SpaceShipController *s)
+int Chickens::total=20;
+
+Chickens::Chickens(int number,int level, Score *scr)
     : QObject() , QGraphicsPixmapItem()
 {
     score=scr;
-    heart=hrt;
-    spaceship=s;
+    setTotal(20);
 
     setPixmap(QPixmap(":/images/oneChicken1.png"));
-    setChickenPos(number);
+    if(level==1)
+        setChickenPos(number);
+    if(level==2)
+        setChickenPos2(number);
 
     //for animated image
     chickenTimer = new QTimer;
@@ -49,71 +53,82 @@ void Chickens::setImage()
 
 void Chickens::moveChicken()
 {
-    hitSpaceShip();
-    if( x() > 0  && goingLeft)
+
+    if( x() > limitLeft  && goingLeft){
         setPos(x() - 10, y() );
 
-    else if(  x() + boundingRect().width() < 1350 ){
+    } else if(  x() + boundingRect().width() < limitRight ){
          setPos(x() + 10, y() );
          goingLeft = false;
+
     } else
          goingLeft = true;
 
 }
 
-
 void Chickens::decrementChicken()
 {
     --lives;
-    if(lives==0){
+    if(lives == 0){
 
         score->increase();
 
+        total--;
         scene()->removeItem(this);
         delete this;
     }
 }
 
-void Chickens::hitSpaceShip()
+int Chickens::getTotal() const
 {
-    QList<QGraphicsItem *> collindingList=collidingItems();
-    for(int i=0;i<collindingList.size();++i){
-        if(typeid (*(collindingList[i]))==typeid (SpaceShip)){
-            heart->decrease();
-            spaceship->removeSpaceShip();
-            QTimer *t=new QTimer();
-            t->setSingleShot(true);
-            t->setInterval(3000);
-            connect(t, &QTimer::timeout, this, [=](){spaceship->addSpaceShip();});
-            t->start();
-        }
-    }
+    return total;
+}
+
+void Chickens::setTotal(int newTotal)
+{
+    total =newTotal;
 }
 
 void Chickens::setChickenPos(int number)
 {
-    switch (number) {
-    case 1:setPos(300,100);break;
-    case 2:setPos(380,100);break;
-    case 3:setPos(460,100);break;
-    case 4:setPos(540,100);break;
-    case 5:setPos(620,100);break;
-    case 6:setPos(300,160);break;
-    case 7:setPos(380,160);break;
-    case 8:setPos(460,160);break;
-    case 9:setPos(540,160);break;
-    case 10:setPos(620,160);break;
-    case 11:setPos(300,220);break;
-    case 12:setPos(380,220);break;
-    case 13:setPos(460,220);break;
-    case 14:setPos(540,220);break;
-    case 15:setPos(620,220);break;
-    case 16:setPos(300,280);break;
-    case 17:setPos(380,280);break;
-    case 18:setPos(460,280);break;
-    case 19:setPos(540,280);break;
-    case 20:setPos(620,280);break;
-    }
+    int x;
+    int y;
+
+    if(number<5)
+        y=100;
+    if(number>=5&&number<10)
+        y=160;
+    if(number>=10&&number<15)
+        y=220;
+    if(number>=15&&number<20)
+        y=280;
+
+    number%=5;
+    x=1350+(number)*80;
+    setPos(x,y);
+    limitLeft=x-1350;
+    limitRight=1350-(4-number)*80;
+}
+
+void Chickens::setChickenPos2(int number)
+{
+    int x;
+    int y;
+
+    if(number<9)
+        y=100;
+    if(number>=9&&number<18)
+        y=160;
+    if(number>=18&&number<27)
+        y=220;
+    if(number>=27&&number<36)
+        y=280;
+
+    number%=9;
+    x=1350+(number)*80;
+    setPos(x,y);
+    limitLeft=x-1350;
+    limitRight=1350-(8-number)*80;
 }
 
 

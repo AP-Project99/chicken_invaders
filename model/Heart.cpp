@@ -1,29 +1,56 @@
 #include "Heart.h"
 #include <QFont>
 #include <QGraphicsScene>
+#include <controller/ViewController.h>
+#include <QThread>
 
-Heart::Heart(QGraphicsScene *scene)
+Heart * Heart::heart = nullptr;     /// initializing static member
+
+Heart::Heart()
 {
-    heartPlayer=3;
+    spaceShipHeart=3;
     //set text in board heart
-    setPlainText(QString::number(heartPlayer));
+    setPlainText(QString::number(spaceShipHeart));
     setDefaultTextColor(Qt::white);
     setFont(QFont("segoe script",15));
-    setPos(20,620);
+    setPos(22,618);
 
     //set picture heart
     QGraphicsPixmapItem *scoreBoard=new QGraphicsPixmapItem();
-    scoreBoard->setPixmap(QPixmap(":/images/heart.png"));
+    scoreBoard->setPixmap(QPixmap(":/images/health-meet.png"));
     scoreBoard->setPos(0,622);
-    scene->addItem(scoreBoard);
+    ViewController::scene->addItem(scoreBoard);
+}
+
+Heart *Heart::getInstance()
+{
+    if(heart == nullptr)
+        heart = new Heart;
+    return heart;
 }
 
 void Heart::decrease()
 {
-    --heartPlayer;
-    setPlainText(QString::number(heartPlayer));
+    --spaceShipHeart;
+    setPlainText(QString::number(spaceShipHeart));
 
-    if(heartPlayer==0)
-        exit(1);
+
+    if(spaceShipHeart == 0){
+
+        QGraphicsPixmapItem *gameover=new QGraphicsPixmapItem();
+        gameover->setPixmap(QPixmap(":/images/gameOver.png"));
+        gameover->setPos(550,300);
+        ViewController::scene->addItem(gameover);
+
+        QTimer *exitTimer=new QTimer();
+        exitTimer->setSingleShot(true);
+        connect( exitTimer, SIGNAL(timeout()),this, SLOT(quit()));
+        exitTimer->start(3000);
+    }
+}
+
+void Heart::quit()
+{
+    exit(1);
 }
 

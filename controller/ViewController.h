@@ -12,12 +12,14 @@
 #include "SpaceShipController.h"
 
 class SpaceShipController;
+
 class ViewController : public QObject
 {
     Q_OBJECT
 
     friend class View;
     friend class SpaceShipController;
+    friend class Heart;
 
 private:
     Play * play;
@@ -29,7 +31,7 @@ private:
     QTimer * ctimer;
 
     Score * score;
-    Heart *heart;
+    Heart * heart;
 
 public:
 

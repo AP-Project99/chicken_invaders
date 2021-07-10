@@ -10,14 +10,15 @@
 #include <QMediaPlayer>
 #include "controller/SpaceShipController.h"
 #include "Heart.h"
-
-//#include "view/View.h"
 #include "Bullet.h"
 
 
 class SpaceShip : public QObject , public QGraphicsPixmapItem
 {
     Q_OBJECT
+
+    friend class SpaceShipController;
+
 private:
     explicit SpaceShip();                   /// private constructor
 
@@ -27,10 +28,14 @@ private:
 
     QMediaPlayer *bulletSound;
 
+    Heart * spaceShipHeart;
+
 public:
     static SpaceShip * getInstance();     /// creating the only instance of class
 
     void fire();
+
+    void hitChicken();
 signals:
 
 

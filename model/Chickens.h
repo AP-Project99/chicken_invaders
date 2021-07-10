@@ -18,17 +18,19 @@ private:
 
     bool goingLeft = true;
 
+    int limitLeft;
+    int limitRight;
+
     int imageTimer = 0;
 
     int lives=1;
 
     Score *score;
-    Heart *heart;
-    SpaceShipController *spaceship;
+
 
 public:
 
-    explicit Chickens(int number,Score *scr,Heart *hrt,SpaceShipController *s);
+    explicit Chickens(int number,int level,Score *scr);
 
     void setImage();
 
@@ -36,7 +38,12 @@ public:
 
     void setChickenPos(int number);
 
-    void hitSpaceShip();
+    void setChickenPos2(int number);
+
+    static int total;
+
+    int getTotal() const;
+    void setTotal(int newTotal);
 
 signals:
 

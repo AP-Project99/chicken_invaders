@@ -9,15 +9,22 @@ class Heart : public QGraphicsTextItem
     Q_OBJECT
 private:
 
-    int heartPlayer;
+    explicit Heart();
+
+    int spaceShipHeart;
+
+    static Heart * heart;
 
 public:
 
-    explicit Heart(QGraphicsScene *scene);
+    static Heart * getInstance();
 
     void decrease();
 
 signals:
+
+public slots:
+    void quit();
 
 };
 
