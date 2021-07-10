@@ -10,6 +10,7 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    controller/ChickenController.cpp \
     controller/SpaceShipController.cpp \
     controller/ViewController.cpp \
     controller/controller.cpp \
@@ -26,6 +27,7 @@ SOURCES += \
     view/View.cpp
 
 HEADERS += \
+    controller/ChickenController.h \
     controller/SpaceShipController.h \
     controller/ViewController.h \
     controller/controller.h \

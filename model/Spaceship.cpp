@@ -38,12 +38,12 @@ void SpaceShip::fire(){
     bulletSound = new QMediaPlayer();
     bulletSound->setMedia(QUrl("qrc:/music/bullet.mp3"));
 
-    if( bulletSound->state() == QMediaPlayer::PlayingState ){
+    if( bulletSound->state() == QMediaPlayer::PlayingState )
         bulletSound->setPosition(0);
-    }
-    else if( bulletSound->state() == QMediaPlayer::StoppedState ){
+
+    else if( bulletSound->state() == QMediaPlayer::StoppedState )
         bulletSound->play();
-    }
+
 }
 
 void SpaceShip::hitChicken()

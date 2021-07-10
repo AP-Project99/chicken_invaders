@@ -2,7 +2,6 @@
 #include <QFont>
 #include <QGraphicsScene>
 #include <controller/ViewController.h>
-#include <QThread>
 
 Heart * Heart::heart = nullptr;     /// initializing static member
 
@@ -13,6 +12,7 @@ Heart::Heart()
     setPlainText(QString::number(spaceShipHeart));
     setDefaultTextColor(Qt::white);
     setFont(QFont("segoe script",15));
+
     setPos(22,618);
 
     //set picture heart

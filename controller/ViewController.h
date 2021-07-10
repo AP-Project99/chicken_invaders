@@ -10,9 +10,10 @@
 #include <model/Heart.h>
 #include <model/Chickens.h>
 #include "SpaceShipController.h"
+#include "ChickenController.h"
 
 class SpaceShipController;
-
+class ChickenController;
 class ViewController : public QObject
 {
     Q_OBJECT
@@ -26,8 +27,8 @@ private:
     Quit * quit;
 
     SpaceShipController * spaceShipController;
+    ChickenController * chickenController;
 
-    static QGraphicsScene * scene;
     QTimer * ctimer;
 
     Score * score;
@@ -37,13 +38,15 @@ public:
 
     explicit ViewController();
 
+    static QGraphicsScene * scene;
+
     ~ViewController();
 
     void setBackground(QString);
 
     void startMenu();
 
-    void addChicken();
+    void addChicken(int );
 
     void addHeart();
 

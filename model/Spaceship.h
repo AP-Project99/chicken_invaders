@@ -8,11 +8,13 @@
 #include <QMouseEvent>
 #include <QWidget>
 #include <QMediaPlayer>
+#include <QList>
+
 #include "controller/SpaceShipController.h"
 #include "Heart.h"
 #include "Bullet.h"
 
-
+class Bullet;
 class SpaceShip : public QObject , public QGraphicsPixmapItem
 {
     Q_OBJECT
@@ -20,7 +22,7 @@ class SpaceShip : public QObject , public QGraphicsPixmapItem
     friend class SpaceShipController;
 
 private:
-    explicit SpaceShip();                   /// private constructor
+    explicit SpaceShip();                  /// private constructor
 
     static SpaceShip * spaceShip;         /// the only object of this class
 

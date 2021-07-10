@@ -10,25 +10,36 @@ Bullet::Bullet() : QObject() , QGraphicsPixmapItem()
     connect(bulletTimer, SIGNAL(timeout()), this, SLOT(move()));
     bulletTimer->start(25);
 
+    chickenController = ChickenController::getInstance();
+}
+
+void Bullet::bulletHitChicken()
+{
+    QList<QGraphicsItem *> collidingList = collidingItems();
+
+    bool hitted = false;
+
+    for ( int i = 0; i < collidingList.size() ; ++i ) {
+        if (typeid ( *(collidingList[i]) ) == typeid (Chickens)) {
+            chickenController->decrementChicken( dynamic_cast <Chickens *>(collidingList[i]) );
+
+            hitted = true;
+        }
+    }
+
+    if(hitted){
+        scene()->removeItem(this);
+        delete this;
+    }
 }
 
 void Bullet::move()
 {
-    //decrement chicken lives
-    QList<QGraphicsItem *> collidingList=collidingItems();
-    for (int i=0;i<collidingList.size() ;++i ) {
-        if (typeid (*(collidingList[i]))==typeid (Chickens)) {
-            dynamic_cast<Chickens *>(collidingList[i])->decrementChicken();
-
-            scene()->removeItem(this);
-            delete this;
-            return;
-        }
-    }
-
+    bulletHitChicken();
 
     setPos(x(), y() - 10);
-    if(y()==0){
+
+    if( y() == 0 ){
         scene()->removeItem(this);
         delete this;
     }

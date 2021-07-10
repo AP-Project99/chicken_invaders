@@ -10,7 +10,7 @@ ViewController::ViewController() : QObject()
     scene = new QGraphicsScene;
     scene->setSceneRect(0,0,1350,650);
 
-    /// space ship controller
+    /// create spaceShip controller
     spaceShipController = SpaceShipController::getInstance();
 }
 
@@ -34,14 +34,18 @@ void ViewController::startGame()
     /// new image for background
     scene->setBackgroundBrush(QBrush(QImage(":/images/gamebackground.jpg")));
 
+    /// create chicken controller
+    chickenController = ChickenController::getInstance();
+
     ////Creating and adding items to the scene
     spaceShipController->addSpaceShip();
+
+    chickenController->addChicken(1);
 
     addScoreBoard();
 
     addHeart();
 
-    addChicken();
 }
 
 void ViewController::startMenu()
@@ -58,23 +62,7 @@ void ViewController::startMenu()
     connect(quit , SIGNAL(quitClicked()), View::getInstance(), SLOT(close()));     // if clicked at quit the view will get closed.
 }
 
-/// Items crated and added to scene
-void ViewController::addChicken(){
 
-    QList<Chickens *> chickens;
-    for (int i = 0; i < 20 ; ++i ) {
-        chickens.push_back(new Chickens(i,1,score));
-        scene->addItem(chickens[i]);
-    }
-
-    QList<Chickens *> chickens2;
-    if(chickens[0]->getTotal()==0){
-        for (int i = 0; i < 20 ; ++i ) {
-            chickens2.push_back(new Chickens(i,2,score));
-            scene->addItem(chickens2[i]);
-        }
-    }
-}
 
 void ViewController::addHeart()
 {
@@ -84,7 +72,7 @@ void ViewController::addHeart()
 
 void ViewController::addScoreBoard()
 {
-    score = new Score(scene);
+    score = Score::getInstance();
     scene->addItem(score);
 }
 

@@ -6,17 +6,17 @@
 
 int Chickens::total=20;
 
-Chickens::Chickens(int number,int level, Score *scr)
-    : QObject() , QGraphicsPixmapItem()
+Chickens::Chickens(int number,int level, int lives) : QObject() , QGraphicsPixmapItem()
 {
-    score=scr;
-    setTotal(20);
 
     setPixmap(QPixmap(":/images/oneChicken1.png"));
+
     if(level==1)
         setChickenPos(number);
     if(level==2)
         setChickenPos2(number);
+
+    this->lives = lives;
 
     //for animated image
     chickenTimer = new QTimer;
@@ -53,10 +53,11 @@ void Chickens::setImage()
 
 void Chickens::moveChicken()
 {
-
+    /// if chickens going left and pos is greater than left limitation -> go left
     if( x() > limitLeft  && goingLeft){
         setPos(x() - 10, y() );
 
+   /// if chickens going right and pos + width of chicken (the right pos of chicken) is lower than right limitation -> go right
     } else if(  x() + boundingRect().width() < limitRight ){
          setPos(x() + 10, y() );
          goingLeft = false;
@@ -66,28 +67,16 @@ void Chickens::moveChicken()
 
 }
 
-void Chickens::decrementChicken()
-{
-    --lives;
-    if(lives == 0){
-
-        score->increase();
-
-        total--;
-        scene()->removeItem(this);
-        delete this;
-    }
-}
-
-int Chickens::getTotal() const
+int Chickens::getTotal()                // total getter
 {
     return total;
 }
 
-void Chickens::setTotal(int newTotal)
+void Chickens::setTotal(int newTotal)   // total setter
 {
-    total =newTotal;
+    total = newTotal;
 }
+
 
 void Chickens::setChickenPos(int number)
 {
