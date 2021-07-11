@@ -19,9 +19,10 @@ private:
 
     QList <Chickens *> allChickens;
 
-
-
     Score * score;
+
+    int season;
+    int level;
 
 
 public:
@@ -29,7 +30,7 @@ public:
 
 
 
-    void addChicken(int);
+    void addChicken(int,int);
 
     void decrementChicken(Chickens *);
 

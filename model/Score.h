@@ -19,7 +19,7 @@ private:
 public:
     static Score * getInstance();
 
-    void increase();
+    void increase(int scr);
 
 signals:
 

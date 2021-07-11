@@ -24,6 +24,10 @@
         <file>oneChicken4.png</file>
         <file>health-meet.png</file>
         <file>gameOver.png</file>
+        <file>hen1.png</file>
+        <file>hen2.png</file>
+        <file>hen3.png</file>
+        <file>hen4.png</file>
     </qresource>
     <qresource prefix="/music">
         <file>bullet.mp3</file>
