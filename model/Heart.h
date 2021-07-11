@@ -11,9 +11,9 @@ private:
 
     explicit Heart();
 
-    int spaceShipHeart;
-
     static Heart * heart;
+
+    int spaceShipHeart;
 
 public:
 
@@ -23,8 +23,6 @@ public:
 
 signals:
 
-public slots:
-    void quit();
 
 };
 

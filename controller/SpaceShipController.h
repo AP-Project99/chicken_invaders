@@ -2,10 +2,15 @@
 #define SPACESHIPCONTROLLER_H
 
 #include <QObject>
+#include <QMediaPlayer>
+#include <QList>
+
 #include "model/Spaceship.h"
+#include "model/Bullet.h"
 #include "ViewController.h"
 
 class SpaceShip;
+class Bullet;
 class SpaceShipController : public QObject
 {
     Q_OBJECT
@@ -19,6 +24,10 @@ private:
     static SpaceShipController * spaceShipController;
 
     SpaceShipController();
+
+    QList <Bullet *> allBullets;
+
+    QMediaPlayer *bulletSound;
 
 public:
     static SpaceShipController * getInstance ();

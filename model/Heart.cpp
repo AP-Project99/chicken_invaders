@@ -46,8 +46,4 @@ void Heart::decrease()
     }
 }
 
-void Heart::quit()
-{
-    exit(1);
-}
 
