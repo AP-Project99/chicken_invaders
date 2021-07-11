@@ -52,9 +52,12 @@ public:
 
     void addScoreBoard();
 
+    static void exit();
+
 
 public slots:
     void startGame();
+
 
 
 signals:

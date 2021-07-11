@@ -48,6 +48,15 @@ void ViewController::startGame()
 
 }
 
+void ViewController::exit()
+{
+    QTimer * exitTimer = new QTimer();
+    exitTimer->setSingleShot(true);
+    connect( exitTimer, SIGNAL(timeout()), View::getInstance(), SLOT(close()));
+    exitTimer->start(1900);
+
+}
+
 void ViewController::startMenu()
 {
     setBackground(":/images/bck.jpg");
@@ -75,6 +84,7 @@ void ViewController::addScoreBoard()
     score = Score::getInstance();
     scene->addItem(score);
 }
+
 
 
 

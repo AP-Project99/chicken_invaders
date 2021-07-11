@@ -35,6 +35,8 @@ public:
 
     void removeSpaceShip();
 
+    void hitChicken();
+
 public slots:
 
     void addSpaceShip();

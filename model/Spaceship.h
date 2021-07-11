@@ -37,7 +37,7 @@ public:
 
     void fire();
 
-    void hitChicken();
+//    void hitChicken();
 signals:
 
 

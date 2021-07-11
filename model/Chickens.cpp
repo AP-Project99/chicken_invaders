@@ -9,7 +9,7 @@ int Chickens::total=20;
 Chickens::Chickens(int number,int level, int lives) : QObject() , QGraphicsPixmapItem()
 {
 
-    setPixmap(QPixmap(":/images/oneChicken1.png"));
+//    setPixmap(QPixmap(":/images/oneChicken1.png"));
 
     if(level==1)
         setChickenPos(number);

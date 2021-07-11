@@ -20,7 +20,6 @@ private:
     QList <Chickens *> allChickens;
 
 
-
     Score * score;
 
 
@@ -28,12 +27,10 @@ public:
     static ChickenController * getInstance();
 
 
-
     void addChicken(int);
 
     void decrementChicken(Chickens *);
 
-    void removeChickens();
 
 
 };

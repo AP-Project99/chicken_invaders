@@ -57,7 +57,3 @@ void ChickenController::decrementChicken(Chickens * chick)
     }
 }
 
-void ChickenController::removeChickens()
-{
-    allChickens.clear();
-}

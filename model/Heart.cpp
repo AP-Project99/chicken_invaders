@@ -42,10 +42,7 @@ void Heart::decrease()
         gameover->setPos(550,300);
         ViewController::scene->addItem(gameover);
 
-        QTimer *exitTimer=new QTimer();
-        exitTimer->setSingleShot(true);
-        connect( exitTimer, SIGNAL(timeout()),this, SLOT(quit()));
-        exitTimer->start(3000);
+        ViewController::exit();
     }
 }
 
