@@ -1,4 +1,6 @@
 #include "ChickenController.h"
+#include <iostream>
+using namespace std;
 
 ChickenController::ChickenController() : QObject()
 {
@@ -15,11 +17,30 @@ ChickenController * ChickenController::getInstance(){
     return chickenController;
 }
 
+void ChickenController::timerAddChicken(int level,int season){
 
-void ChickenController::addChicken(int level,int season){
-
-    this->season=season;
     this->level=level;
+    this->season=season;
+
+    txt = new QGraphicsTextItem();
+    QString str = "season " + QString::number(season) + " - level " + QString::number(level);
+    txt->setPlainText(str);
+    txt->setDefaultTextColor(Qt::gray);
+    txt->setFont(QFont("SF Port McKenzie Extended",40));
+    txt->setPos(550,300);
+    ViewController::scene->addItem(txt);
+
+    QTimer *betweenLevel=new QTimer();
+    betweenLevel->setSingleShot(true);
+    connect( betweenLevel, SIGNAL(timeout()), this, SLOT(addChicken()));
+    betweenLevel->start(4000);
+
+}
+
+void ChickenController::addChicken(){
+    ViewController::scene->removeItem(txt);
+    delete txt;
+    txt=nullptr;
 
     if(level == 1 && season == 1){
         Chickens::setTotal(20);
@@ -80,7 +101,7 @@ void ChickenController::decrementChicken(Chickens * chick)
             level = 1;
             season++;
         }
-        addChicken(level,season);
+        timerAddChicken(level,season);
     }
 }
 

@@ -40,7 +40,11 @@ void ViewController::startGame()
     ////Creating and adding items to the scene
     spaceShipController->addSpaceShip();
 
-    chickenController->addChicken(1,1);
+//    QTimer *startGameTimer=new QTimer;
+//    startGameTimer->setSingleShot(true);
+//    connect(startGameTimer, SIGNAL(timeout()), ChickenController, SLOT(addChicken(1, 1)));
+//    startGameTimer->start(4000);
+    chickenController->timerAddChicken(1, 1);
 
     addScoreBoard();
 

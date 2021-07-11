@@ -8,7 +8,7 @@
 #include "model/Chickens.h"
 #include "model/Score.h"
 
-class ChickenController : QObject
+class ChickenController : public QObject
 {
     Q_OBJECT
 
@@ -24,18 +24,21 @@ private:
     int season;
     int level;
 
+    QGraphicsTextItem *txt;
+
 
 public:
     static ChickenController * getInstance();
-
-
-
-    void addChicken(int,int);
 
     void decrementChicken(Chickens *);
 
     void removeChickens();
 
+    void timerAddChicken(int ,int);
+
+public slots:
+
+    void addChicken();
 
 };
 
