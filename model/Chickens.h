@@ -17,20 +17,22 @@ private:
 
     int limitLeft;
     int limitRight;
+    int limitDown;
 
     int imageTimer = 0;
 
 
 public:
 
-    explicit Chickens(int number,int level, int lives);
+    explicit Chickens(int number,int level, int season, int lives);
 
     void setImage();
 
+    void setChickenPos11(int number);
 
-    void setChickenPos(int number);
+    void setChickenPos12(int number);
 
-    void setChickenPos2(int number);
+    void setChickenPos21(int number);
 
     static int total;
 
@@ -40,6 +42,8 @@ public:
 
     int lives;
 
+    QString type;
+
 
 signals:
 
@@ -47,6 +51,8 @@ public slots:
     void incrementChickenTimer();
 
     void moveChicken();
+
+    void moveDown();
 
 
 };
