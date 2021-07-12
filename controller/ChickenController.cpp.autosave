@@ -84,9 +84,9 @@ void ChickenController::addChicken(){
                 }
 
                 if( i % 2 == 1 ){
-                    Hen * bird = new Hen(i, 2, 1);
-                    allHens.push_back(bird);
-                    ViewController::scene->addItem(bird);
+                    Hen * hen = new Hen(i, 2, 1);
+                    allHens.push_back(hen);
+                    ViewController::scene->addItem(hen);
                 }
 
             }
@@ -109,14 +109,13 @@ void ChickenController::decrementChicken(Birds * bird)
             score->increase(10);
 
             for ( int i = 0; i < allHens.size(); i++ ){
-                if(bird == allHens[i]){
+                if( bird == allHens[i] ){
                     allHens.erase(allHens.begin() + i);
                 }
             }
         }
 
         ViewController::scene->removeItem(bird);
-
         delete bird;
         bird = nullptr;
 
@@ -135,7 +134,7 @@ void ChickenController::decrementChicken(Birds * bird)
 }
 
 void ChickenController::addEgg(){
-    if( Hen::henNumbers > 0  ){
+    if( h > 0  ){
 
         int numberOfHens = allHens.size();
 

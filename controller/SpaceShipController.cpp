@@ -1,6 +1,7 @@
 #include "SpaceShipController.h"
 #include <QGraphicsScene>
-#include "model/Chickens.h"
+#include "model/Birds.h"
+
 
 SpaceShipController::SpaceShipController()
 {
@@ -27,6 +28,7 @@ void SpaceShipController::addSpaceShip()
 
 void SpaceShipController::removeSpaceShip(){
     ViewController::scene->removeItem(spaceShip);
+    spaceShip = nullptr;
 }
 
 void SpaceShipController::fire()
@@ -75,27 +77,42 @@ void SpaceShipController::moveSpaceShipLeft()
 
 void SpaceShipController::hitChicken()
 {
-    QList <QGraphicsItem *> collindingList = spaceShip->collidingItems();
-    for(int i = 0; i < collindingList.size(); ++i){
-        if(typeid (*(collindingList[i])) == typeid (Chickens)){
+    QList <QGraphicsItem *> collidingList = spaceShip->collidingItems();
+
+    for(int i = 0; i < collidingList.size(); ++i){
+        if( dynamic_cast <Birds *> (collidingList[i]) ){
 
             spaceShip->spaceShipHeart->decrease();
 
             /// delete spaceShip from the scene
+           /// spaceShip has set to null because we have deleted it from the scene
             removeSpaceShip();
 
-            /// spaceShip has set to null because we have deleted it from the scene
-            spaceShip = nullptr;
-
             /// add the spaceShip to the scene 2 sec later
-            QTimer * reviveSpaceShip = new QTimer();
-            reviveSpaceShip->setSingleShot(true);
-            connect( reviveSpaceShip, SIGNAL(timeout()), this, SLOT(addSpaceShip()) );
-            reviveSpaceShip->start(2000);
+            reviveSpaceShip();
 
             break;          /// if spaceShip hits many chickens only one health will be decreased
         }
+
+        if(typeid( *(collidingList[i]) ) == typeid(Egg) ){
+            spaceShip->spaceShipHeart->decrease();
+
+            removeSpaceShip();
+
+            reviveSpaceShip();
+
+//            break;
+
+        }
     }
+}
+
+void SpaceShipController::reviveSpaceShip(){
+    QTimer * reviveSpaceShip = new QTimer();
+
+    reviveSpaceShip->setSingleShot(true);
+    connect( reviveSpaceShip, SIGNAL(timeout()), this, SLOT(addSpaceShip()) );
+    reviveSpaceShip->start(2000);
 }
 
 

@@ -15,9 +15,12 @@ SOURCES += \
     controller/ViewController.cpp \
     controller/controller.cpp \
     main.cpp \
+    model/Birds.cpp \
     model/Bullet.cpp \
     model/Chickens.cpp \
+    model/Egg.cpp \
     model/Heart.cpp \
+    model/Hen.cpp \
     model/Score.cpp \
     model/Spaceship.cpp \
     model/menu/Play.cpp \
@@ -31,9 +34,12 @@ HEADERS += \
     controller/SpaceShipController.h \
     controller/ViewController.h \
     controller/controller.h \
+    model/Birds.h \
     model/Bullet.h \
     model/Chickens.h \
+    model/Egg.h \
     model/Heart.h \
+    model/Hen.h \
     model/Score.h \
     model/Spaceship.h \
     model/menu/Play.h \

@@ -40,7 +40,10 @@ void ViewController::startGame()
     ////Creating and adding items to the scene
     spaceShipController->addSpaceShip();
 
-    chickenController->addChicken(1);
+
+    chickenController->timerAddChicken(1, 1);   // season 1 - level 1
+
+    chickenController->addEggTimer();
 
     addScoreBoard();
 

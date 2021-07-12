@@ -31,8 +31,8 @@ Score *Score::getInstance()
     return score;
 }
 
-void Score::increase()
+void Score::increase(int scr)
 {
-    playerScore += 5;
+    playerScore += scr;
     setPlainText(QString::number(playerScore));
 }
