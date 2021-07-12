@@ -6,15 +6,10 @@
 #include <QGraphicsRectItem>
 #include <QGraphicsPixmapItem>
 #include <QMouseEvent>
-#include <QWidget>
-#include <QMediaPlayer>
-#include <QList>
 
 #include "controller/SpaceShipController.h"
 #include "Heart.h"
-#include "Bullet.h"
 
-class Bullet;
 class SpaceShip : public QObject , public QGraphicsPixmapItem
 {
     Q_OBJECT
@@ -26,10 +21,6 @@ private:
 
     static SpaceShip * spaceShip;         /// the only object of this class
 
-    QList <Bullet *> allBullets;
-
-    QMediaPlayer *bulletSound;
-
     Heart * spaceShipHeart;
 
 public:
@@ -37,7 +28,7 @@ public:
 
     void fire();
 
-    void hitChicken();
+
 signals:
 
 

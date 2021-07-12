@@ -28,6 +28,8 @@
         <file>hen2.png</file>
         <file>hen3.png</file>
         <file>hen4.png</file>
+        <file>nimroo.png</file>
+        <file>egg.png</file>
     </qresource>
     <qresource prefix="/music">
         <file>bullet.mp3</file>

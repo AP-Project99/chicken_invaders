@@ -3,9 +3,11 @@
 
 #include <QObject>
 #include <QList>
+#include <cstdlib>
 
 #include "ViewController.h"
 #include "model/Chickens.h"
+#include "model/Hen.h"
 #include "model/Score.h"
 
 class ChickenController : public QObject
@@ -17,7 +19,13 @@ private:
 
     explicit ChickenController();
 
-    QList <Chickens *> allChickens;
+
+    QVector <Hen *> allHens;
+
+    QList< Birds *> allBirds;
+
+
+
 
     Score * score;
 
@@ -30,13 +38,19 @@ private:
 public:
     static ChickenController * getInstance();
 
-    void decrementChicken(Chickens *);
 
-    void removeChickens();
+    void decrementChicken(Birds *);
+
+
+    void hitEgg(Egg *);
+
 
     void timerAddChicken(int ,int);
 
+    void addEggTimer();
+
 public slots:
+    void addEgg();
 
     void addChicken();
 

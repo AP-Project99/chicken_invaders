@@ -47,15 +47,8 @@ void Heart::decrease()
         setFont(QFont("SF Port McKenzie Extended",40));
         setPos(550,300);
 
-        QTimer *exitTimer=new QTimer();
-        exitTimer->setSingleShot(true);
-        connect( exitTimer, SIGNAL(timeout()),this, SLOT(quit()));
-        exitTimer->start(3000);
+        ViewController::exit();
     }
 }
 
-void Heart::quit()
-{
-    exit(1);
-}
 

@@ -1,17 +1,22 @@
 #include "Bullet.h"
 #include "Spaceship.h"
-#include "Chickens.h"
+#include "Birds.h"
+#include "Egg.h"
+
+#include <QDebug>
 
 Bullet::Bullet() : QObject() , QGraphicsPixmapItem()
 {
     setPixmap(QPixmap(":/images/bullet2.png"));
-    setPos(SpaceShip::getInstance()->x()+70, SpaceShip::getInstance()->y() - 35);
+    setPos(SpaceShip::getInstance()->x() + 70, SpaceShip::getInstance()->y() - 35);
 
     connect(bulletTimer, SIGNAL(timeout()), this, SLOT(move()));
     bulletTimer->start(25);
 
+    /// initialize controller for chicken
     chickenController = ChickenController::getInstance();
 }
+
 
 void Bullet::bulletHitChicken()
 {
@@ -20,9 +25,15 @@ void Bullet::bulletHitChicken()
     bool hitted = false;
 
     for ( int i = 0; i < collidingList.size() ; ++i ) {
-        if (typeid ( *(collidingList[i]) ) == typeid (Chickens)) {
-            chickenController->decrementChicken( dynamic_cast <Chickens *>(collidingList[i]) );
+        if (dynamic_cast <Birds *> (collidingList[i])) {      /// if it "is a" bird
 
+            chickenController->decrementChicken( dynamic_cast <Birds *>(collidingList[i]) );
+
+            hitted = true;
+        }
+
+        if(typeid(*(collidingList[i])) == typeid(Egg)){
+            chickenController->hitEgg(dynamic_cast <Egg *>(collidingList[i]));
             hitted = true;
         }
     }

@@ -4,55 +4,29 @@
 #include <QObject>
 #include <QGraphicsPixmapItem>
 #include <QTimer>
+
+#include "Birds.h"
 #include "Heart.h"
 
-class Chickens : public QObject , public QGraphicsPixmapItem
+class Chickens : public Birds
 {
-    Q_OBJECT
+
+
 private:
-    QTimer * chickenTimer;
-    QTimer * moveTimer;
-
-    bool goingLeft = true;
-
-    int limitLeft;
-    int limitRight;
-    int limitDown;
-
-    int imageTimer = 0;
 
 
 public:
 
-    explicit Chickens(int number,int level, int season, int lives);
+    explicit Chickens(int number, int season, int level);
 
-    void setImage();
+    void setImage() override;
 
-    void setChickenPos11(int number);
 
-    void setChickenPos12(int number);
-
-    void setChickenPos21(int number);
-
-    static int total;
-
-    static int getTotal() ;
-
-    static void setTotal(int newTotal);
-
-    int lives;
-
-    QString type;
+public slots:
 
 
 signals:
 
-public slots:
-    void incrementChickenTimer();
-
-    void moveChicken();
-
-    void moveDown();
 
 
 };

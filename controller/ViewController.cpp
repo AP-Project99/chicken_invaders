@@ -40,15 +40,23 @@ void ViewController::startGame()
     ////Creating and adding items to the scene
     spaceShipController->addSpaceShip();
 
-//    QTimer *startGameTimer=new QTimer;
-//    startGameTimer->setSingleShot(true);
-//    connect(startGameTimer, SIGNAL(timeout()), ChickenController, SLOT(addChicken(1, 1)));
-//    startGameTimer->start(4000);
-    chickenController->timerAddChicken(1, 1);
+
+    chickenController->timerAddChicken(1, 1);   // season 1 - level 1
+
+    chickenController->addEggTimer();
 
     addScoreBoard();
 
     addHeart();
+
+}
+
+void ViewController::exit()
+{
+    QTimer * exitTimer = new QTimer();
+    exitTimer->setSingleShot(true);
+    connect( exitTimer, SIGNAL(timeout()), View::getInstance(), SLOT(close()));
+    exitTimer->start(1900);
 
 }
 
@@ -79,6 +87,7 @@ void ViewController::addScoreBoard()
     score = Score::getInstance();
     scene->addItem(score);
 }
+
 
 
 
