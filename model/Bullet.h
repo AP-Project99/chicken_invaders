@@ -17,7 +17,6 @@ private:
 
     ChickenController * chickenController;
 
-
 public:
     explicit Bullet();
 

@@ -27,8 +27,6 @@ private:
 
     QList <Bullet *> allBullets;
 
-    QMediaPlayer *bulletSound;
-
 public:
     static SpaceShipController * getInstance ();
 

@@ -38,7 +38,7 @@ void SpaceShipController::fire()
         allBullets.push_back(bullet);
         ViewController::scene->addItem(bullet);
 
-        bulletSound = new QMediaPlayer();
+        QMediaPlayer *bulletSound = new QMediaPlayer();
         bulletSound->setMedia(QUrl("qrc:/music/bullet.mp3"));
 
         if( bulletSound->state() == QMediaPlayer::PlayingState )
@@ -82,6 +82,16 @@ void SpaceShipController::hitChicken()
     for(int i = 0; i < collidingList.size(); ++i){
         if( dynamic_cast <Birds *> (collidingList[i]) ){
 
+            //sound for hit spaceship to birds
+            QMediaPlayer *hitSpaceShip = new QMediaPlayer;
+            hitSpaceShip->setMedia(QUrl("qrc:/music/spaceshipToChicken.mp3"));
+
+            if(hitSpaceShip->state() == QMediaPlayer::PlayingState)
+                hitSpaceShip->setPosition(0);
+            else if(hitSpaceShip->state() == QMediaPlayer::StoppedState)
+                hitSpaceShip->play();
+
+
             spaceShip->spaceShipHeart->decrease();
 
             /// delete spaceShip from the scene
@@ -95,6 +105,17 @@ void SpaceShipController::hitChicken()
         }
 
         if(typeid( *(collidingList[i]) ) == typeid(Egg) ){
+
+            //sound for hit spaceship to eggs
+            QMediaPlayer *hitSpaceShip = new QMediaPlayer;
+            hitSpaceShip->setMedia(QUrl("qrc:/music/spaceshipToEgg.mp3"));
+
+            if(hitSpaceShip->state() == QMediaPlayer::PlayingState)
+                hitSpaceShip->setPosition(0);
+            else if(hitSpaceShip->state() == QMediaPlayer::StoppedState)
+                hitSpaceShip->play();
+
+
             spaceShip->spaceShipHeart->decrease();
 
             removeSpaceShip();
@@ -114,5 +135,4 @@ void SpaceShipController::reviveSpaceShip(){
     connect( reviveSpaceShip, SIGNAL(timeout()), this, SLOT(addSpaceShip()) );
     reviveSpaceShip->start(2000);
 }
-
 

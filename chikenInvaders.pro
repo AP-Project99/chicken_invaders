@@ -23,6 +23,7 @@ SOURCES += \
     model/Hen.cpp \
     model/Score.cpp \
     model/Spaceship.cpp \
+    model/SuperChicken.cpp \
     model/menu/Play.cpp \
     model/menu/Quit.cpp \
     model/menu/Resume.cpp \
@@ -42,6 +43,7 @@ HEADERS += \
     model/Hen.h \
     model/Score.h \
     model/Spaceship.h \
+    model/SuperChicken.h \
     model/menu/Play.h \
     model/menu/Quit.h \
     model/menu/Resume.h \

@@ -31,6 +31,14 @@ void ChickenController::timerAddChicken(int level,int season){
 
     ViewController::scene->addItem(txt);
 
+    QMediaPlayer *levelPlayer = new QMediaPlayer;
+    if(season == 1 && level == 1)
+        levelPlayer->setMedia(QUrl("qrc:/music/spaceship.mp3"));
+    else
+        levelPlayer->setMedia(QUrl("qrc:/music/betweenLevel.mp3"));
+
+    levelPlayer->play();
+
     // add chickens after 4 seconds
     QTimer * betweenLevel = new QTimer();
     betweenLevel->setSingleShot(true);
@@ -92,8 +100,62 @@ void ChickenController::addChicken(){
             }
 
         }
+
+        if(level == 2){
+            allBirds.clear();                           /// clear the allChicken list
+            Birds::totalAnimals = 30;
+
+            for (int i = 0; i < 30 ; ++i ) {
+                if( (i % 10) % 3 == 0 ){
+                    Birds * bird = new Chickens(i, 2, 2);
+                    ViewController::scene->addItem(bird);
+                }
+
+                else {
+                    Hen * bird = new Hen(i, 2, 2);
+                    allHens.push_back(bird);
+                    ViewController::scene->addItem(bird);
+                }
+
+            }
+        }
+
     }
 
+    if(season == 3){
+        if (level == 1) {
+            allBirds.clear();                           /// clear the allChicken list
+            Birds::totalAnimals = 18;
+
+            for (int i = 0; i < 18 ; ++i ) {
+                if( i % 2 == 0 ){
+                    Hen * bird = new Hen(i, 3, 1);
+                    allHens.push_back(bird);
+                    ViewController::scene->addItem(bird);
+                }
+
+                if( i % 2 == 1 ){
+                    SuperChicken * bird = new SuperChicken(i, 3, 1);
+                    allSuperChicken.push_back(bird);
+                    ViewController::scene->addItem(bird);
+                }
+
+            }
+
+        }
+
+        if(level == 2){
+            allBirds.clear();                           /// clear the allChicken list
+            Birds::totalAnimals = 27;
+
+            for (int i = 0; i < 27 ; ++i ) {
+                SuperChicken * bird = new SuperChicken(i, 3, 2);
+                allSuperChicken.push_back(bird);
+                ViewController::scene->addItem(bird);
+            }
+        }
+
+    }
 
 }
 
@@ -111,6 +173,16 @@ void ChickenController::decrementChicken(Birds * bird)
             for ( int i = 0; i < allHens.size(); i++ ){
                 if(bird == allHens[i]){
                     allHens.erase(allHens.begin() + i);
+                }
+            }
+        }
+
+        if( bird->type == "super chicken"){
+            score->increase(20);
+
+            for ( int i = 0; i < allSuperChicken.size(); i++ ){
+                if(bird == allSuperChicken[i]){
+                    allSuperChicken.erase(allSuperChicken.begin() + i);
                 }
             }
         }

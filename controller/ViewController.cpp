@@ -64,6 +64,10 @@ void ViewController::startMenu()
 {
     setBackground(":/images/bck.jpg");
 
+    QMediaPlayer *startPlayer = new QMediaPlayer;
+    startPlayer->setMedia(QUrl("qrc:/music/startGame.mp3"));
+    startPlayer->play();
+
     play = new Play();
     quit = new Quit();
 

@@ -4,7 +4,7 @@
 #include <QObject>
 #include <QGraphicsPixmapItem>
 #include <QTimer>
-
+#include <QMediaPlayer>
 #include "model/Hen.h"
 
 class Hen;
@@ -22,7 +22,6 @@ public:
     explicit Egg(Hen * hen);
 
     void reachEnd();
-
 
 
 

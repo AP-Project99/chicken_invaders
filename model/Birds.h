@@ -45,6 +45,12 @@ public:
 
     void setChickenPos21(int number);
 
+    void setChickenPos22(int number);
+
+    void setChickenPos31(int number);
+
+    void setChickenPos32(int number);
+
 
 public slots:
     void incrementChickenTimer();

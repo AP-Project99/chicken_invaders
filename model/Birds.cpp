@@ -15,6 +15,17 @@ Birds::Birds(int number, int season, int level) : QObject()
     else if(season == 2){
         if(level == 1)
             setChickenPos21(number);
+
+        if( level == 2)
+            setChickenPos22(number);
+    }
+
+    else if(season == 3){
+        if(level == 1)
+            setChickenPos31(number);
+
+        if(level == 2)
+            setChickenPos32(number);
     }
 
     //for animated image
@@ -121,6 +132,66 @@ void Birds::setChickenPos21(int number)
     setPos(x,y);
     limitLeft=x-350;
     limitRight=1350-(7-number)*80;
+    limitDown=y+280;
+}
+
+void Birds::setChickenPos22(int number)
+{
+    int x;
+    int y = 0;
+
+    if(number<10)
+        y=-180;
+    if(number>=10&&number<20)
+        y=-120;
+    if(number>=20&&number<30)
+        y=-60;
+
+    number%=10;
+    x=300+(number)*80;
+    setPos(x,y);
+    limitLeft=x-300;
+    limitRight=1350-(9-number)*80;
+    limitDown=y+280;
+}
+
+void Birds::setChickenPos31(int number)
+{
+    int x;
+    int y = 0;
+
+    if(number<6)
+        y=-180;
+    if(number>=6&&number<12)
+        y=-120;
+    if(number>=12&&number<18)
+        y=-60;
+
+    number%=6;
+    x=450+(number)*80;
+    setPos(x,y);
+    limitLeft=x-450;
+    limitRight=1350-(5-number)*80;
+    limitDown=y+280;
+}
+
+void Birds::setChickenPos32(int number)
+{
+    int x;
+    int y = 0;
+
+    if(number<6)
+        y=-180;
+    if(number>=6&&number<12)
+        y=-120;
+    if(number>=12&&number<18)
+        y=-60;
+
+    number%=9;
+    x=300+(number)*80;
+    setPos(x,y);
+    limitLeft=x-300;
+    limitRight=1350-(8-number)*80;
     limitDown=y+280;
 }
 
