@@ -31,6 +31,14 @@ void ChickenController::timerAddChicken(int level,int season){
 
     ViewController::scene->addItem(txt);
 
+    QMediaPlayer *levelPlayer = new QMediaPlayer;
+    if(season == 1 && level == 1)
+        levelPlayer->setMedia(QUrl("qrc:/music/spaceship.mp3"));
+    else
+        levelPlayer->setMedia(QUrl("qrc:/music/betweenLevel.mp3"));
+
+    levelPlayer->play();
+
     // add chickens after 4 seconds
     QTimer * betweenLevel = new QTimer();
     betweenLevel->setSingleShot(true);
@@ -92,6 +100,26 @@ void ChickenController::addChicken(){
             }
 
         }
+
+        if(level == 2){
+            allBirds.clear();                           /// clear the allChicken list
+            Birds::totalAnimals = 30;
+
+            for (int i = 0; i < 30 ; ++i ) {
+                if( (i % 10) % 3 == 0 ){
+                    Birds * bird = new Chickens(i, 2, 2);
+                    ViewController::scene->addItem(bird);
+                }
+
+                else {
+                    Hen * bird = new Hen(i, 2, 2);
+                    allHens.push_back(bird);
+                    ViewController::scene->addItem(bird);
+                }
+
+            }
+        }
+
     }
 
 
