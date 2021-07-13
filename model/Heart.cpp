@@ -22,6 +22,10 @@ Heart::Heart()
     ViewController::scene->addItem(scoreBoard);
 }
 
+Heart::~Heart(){
+
+}
+
 Heart *Heart::getInstance()
 {
     if(heart == nullptr)
@@ -36,11 +40,6 @@ void Heart::decrease()
 
 
     if(spaceShipHeart == 0){
-
-//        QGraphicsPixmapItem *gameover=new QGraphicsPixmapItem();
-//        gameover->setPixmap(QPixmap(":/images/gameOver.png"));
-//        gameover->setPos(550,300);
-//        ViewController::scene->addItem(gameover);
 
         setPlainText(QString("Game Over !"));
         setDefaultTextColor(Qt::gray);

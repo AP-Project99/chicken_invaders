@@ -16,16 +16,12 @@ class ChickenController : public QObject
     Q_OBJECT
 
 private:
+
     static ChickenController * chickenController;
 
     explicit ChickenController();
 
     QVector <Hen *> allHens;
-
-    QVector <SuperChicken *> allSuperChicken;
-
-    QList< Birds *> allBirds;
-
 
     Score * score;
 
@@ -34,8 +30,15 @@ private:
 
     QGraphicsTextItem *txt;
 
+    QMediaPlayer * levelSound;
+
+
+
 
 public:
+
+    ~ChickenController();
+
     static ChickenController * getInstance();
 
 

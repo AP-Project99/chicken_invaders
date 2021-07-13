@@ -1,4 +1,5 @@
 #include "Birds.h"
+#include <QDebug>
 
 int Birds::totalAnimals = 0;
 
@@ -38,6 +39,11 @@ Birds::Birds(int number, int season, int level) : QObject()
     moveTimer = new QTimer;
     connect(moveTimer, SIGNAL(timeout()), this, SLOT(moveDown()));
     moveTimer->start(50);
+}
+
+Birds::~Birds(){
+    delete chickenTimer;
+    delete moveTimer;
 }
 
 void Birds::incrementChickenTimer()

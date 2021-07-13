@@ -25,7 +25,10 @@ private:
 
     SpaceShipController();
 
-    QList <Bullet *> allBullets;
+    QTimer * reviveSpaceShipTimer;
+
+//    QMediaPlayer *hitSpaceShip;
+
 
 public:
     static SpaceShipController * getInstance ();

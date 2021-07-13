@@ -17,6 +17,9 @@ private:
     QGraphicsPixmapItem * scoreBoard;
 
 public:
+
+    ~Score();
+
     static Score * getInstance();
 
     void increase(int scr);

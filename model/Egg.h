@@ -15,11 +15,17 @@ private:
 
     QTimer * eggTimer;
 
+    QTimer * delNimroTimer;
+
+    QMediaPlayer *eggSound;
+
     int eggSeconds = 0;
 
 
 public:
     explicit Egg(Hen * hen);
+
+    ~Egg();
 
     void reachEnd();
 

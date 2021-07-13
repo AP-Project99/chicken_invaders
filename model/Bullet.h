@@ -13,12 +13,18 @@ class Bullet : public QObject , public QGraphicsPixmapItem
 {
     Q_OBJECT
 private:
-    QTimer * bulletTimer = new QTimer;
 
     ChickenController * chickenController;
 
+
+    QTimer * bulletTimer;
+
+    QMediaPlayer *bulletSound;
+
 public:
     explicit Bullet();
+
+    ~Bullet();
 
     void bulletHitChicken();
 

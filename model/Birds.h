@@ -23,10 +23,10 @@ protected:
 
     int imageTimer = 0;
 
-
-
 public:
     explicit Birds(int number, int season, int level);
+
+    virtual ~Birds();
 
     static int totalAnimals;
 

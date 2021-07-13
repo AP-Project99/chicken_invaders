@@ -17,6 +17,8 @@ private:
 
 public:
 
+    ~Heart();
+
     static Heart * getInstance();
 
     void decrease();

@@ -8,6 +8,10 @@ ChickenController::ChickenController() : QObject()
 
 }
 
+ChickenController::~ChickenController(){
+
+}
+
 ChickenController * ChickenController::chickenController = nullptr;
 
 ChickenController * ChickenController::getInstance(){
@@ -31,19 +35,19 @@ void ChickenController::timerAddChicken(int level,int season){
 
     ViewController::scene->addItem(txt);
 
-    QMediaPlayer *levelPlayer = new QMediaPlayer;
+    levelSound = new QMediaPlayer;
     if(season == 1 && level == 1)
-        levelPlayer->setMedia(QUrl("qrc:/music/spaceship.mp3"));
+        levelSound->setMedia(QUrl("qrc:/music/spaceship.mp3"));
     else
-        levelPlayer->setMedia(QUrl("qrc:/music/betweenLevel.mp3"));
+        levelSound->setMedia(QUrl("qrc:/music/betweenLevel.mp3"));
 
-    levelPlayer->play();
+    levelSound->play();
 
     // add chickens after 4 seconds
-    QTimer * betweenLevel = new QTimer();
-    betweenLevel->setSingleShot(true);
-    connect( betweenLevel, SIGNAL(timeout()), this, SLOT(addChicken()));
-    betweenLevel->start(4000);
+    QTimer * betweenLevelTimer = new QTimer();
+    betweenLevelTimer->setSingleShot(true);
+    connect( betweenLevelTimer, SIGNAL(timeout()), this, SLOT(addChicken()));
+    betweenLevelTimer->start(4000);
 
 
 }
@@ -60,6 +64,9 @@ void ChickenController::addChicken(){
     delete txt;
     txt = nullptr;
 
+    delete levelSound;
+    levelSound = nullptr;
+
 
     if(season == 1){
         if(level == 1){
@@ -70,8 +77,8 @@ void ChickenController::addChicken(){
                 ViewController::scene->addItem(bird);
             }
         }
+
         if (level == 2) {
-            allBirds.clear();                           /// clear the allChicken list
             Birds::totalAnimals = 36;
 
             for (int i = 0; i < 36 ; ++i ) {
@@ -82,7 +89,6 @@ void ChickenController::addChicken(){
     }
     if(season == 2){
         if (level == 1) {
-            allBirds.clear();                           /// clear the allChicken list
             Birds::totalAnimals = 24;
 
             for (int i = 0; i < 24 ; ++i ) {
@@ -92,17 +98,14 @@ void ChickenController::addChicken(){
                 }
 
                 if( i % 2 == 1 ){
-                    Hen * bird = new Hen(i, 2, 1);
-                    allHens.push_back(bird);
-                    ViewController::scene->addItem(bird);
+                    Hen * hen = new Hen(i, 2, 1);
+                    allHens.push_back(hen);
+                    ViewController::scene->addItem(hen);
                 }
-
             }
-
         }
 
         if(level == 2){
-            allBirds.clear();                           /// clear the allChicken list
             Birds::totalAnimals = 30;
 
             for (int i = 0; i < 30 ; ++i ) {
@@ -112,11 +115,10 @@ void ChickenController::addChicken(){
                 }
 
                 else {
-                    Hen * bird = new Hen(i, 2, 2);
-                    allHens.push_back(bird);
-                    ViewController::scene->addItem(bird);
+                    Hen * hen = new Hen(i, 2, 2);
+                    allHens.push_back( hen );
+                    ViewController::scene->addItem(hen);
                 }
-
             }
         }
 
@@ -124,33 +126,28 @@ void ChickenController::addChicken(){
 
     if(season == 3){
         if (level == 1) {
-            allBirds.clear();                           /// clear the allChicken list
             Birds::totalAnimals = 18;
 
             for (int i = 0; i < 18 ; ++i ) {
-                if( i % 2 == 0 ){
-                    Hen * bird = new Hen(i, 3, 1);
-                    allHens.push_back(bird);
-                    ViewController::scene->addItem(bird);
-                }
+                Hen * bird;
+                if( i % 2 == 0 )
+                    bird = new Hen(i, 3, 1);
 
-                if( i % 2 == 1 ){
-                    SuperChicken * bird = new SuperChicken(i, 3, 1);
-                    allSuperChicken.push_back(bird);
-                    ViewController::scene->addItem(bird);
-                }
+                if( i % 2 == 1 )
+                    bird = new SuperChicken(i, 3, 1);
 
+                allHens.push_back(bird);
+                ViewController::scene->addItem(bird);
             }
-
         }
 
         if(level == 2){
-            allBirds.clear();                           /// clear the allChicken list
             Birds::totalAnimals = 27;
 
+
             for (int i = 0; i < 27 ; ++i ) {
-                SuperChicken * bird = new SuperChicken(i, 3, 2);
-                allSuperChicken.push_back(bird);
+                Hen * bird = new SuperChicken(i, 3, 2);
+                allHens.push_back(bird);
                 ViewController::scene->addItem(bird);
             }
         }
@@ -170,25 +167,21 @@ void ChickenController::decrementChicken(Birds * bird)
         if( bird->type == "hen" ){
             score->increase(10);
 
-            for ( int i = 0; i < allHens.size(); i++ ){
-                if(bird == allHens[i]){
+            for ( int i = 0; i < allHens.size(); i++ )
+                if( bird == allHens[i] )
                     allHens.erase(allHens.begin() + i);
-                }
-            }
         }
 
         if( bird->type == "super chicken"){
             score->increase(20);
 
-            for ( int i = 0; i < allSuperChicken.size(); i++ ){
-                if(bird == allSuperChicken[i]){
-                    allSuperChicken.erase(allSuperChicken.begin() + i);
-                }
-            }
+            for ( int i = 0; i < allHens.size(); i++ )
+                if( dynamic_cast<SuperChicken*> (bird) == allHens[i] )
+                    allHens.erase(allHens.begin() + i);
+
         }
 
         ViewController::scene->removeItem(bird);
-
         delete bird;
         bird = nullptr;
 
@@ -207,13 +200,14 @@ void ChickenController::decrementChicken(Birds * bird)
 }
 
 void ChickenController::addEgg(){
-    if( Hen::henNumbers > 0  ){
+    if( allHens.size() > 0 ){
 
         int numberOfHens = allHens.size();
 
         for (int i = 0; i < numberOfHens/4 ; ++i) {
             int index = rand() % numberOfHens;
-            allHens[index]->eggs.push_back(new Egg(allHens[index]));
+            Egg * egg = new Egg(allHens[index]);
+            ViewController::scene->addItem(egg);
         }
     }
 }
@@ -224,6 +218,5 @@ void ChickenController::hitEgg(Egg * egg){
     ViewController::scene->removeItem(egg);
     delete egg;
     egg = nullptr;
-
 }
 

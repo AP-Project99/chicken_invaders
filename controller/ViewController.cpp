@@ -29,6 +29,7 @@ void ViewController::startGame()
     /// deleting objects and scene
     delete play;
     delete quit;
+    delete startGameSound;
     scene->clear();
 
     /// new image for background
@@ -43,7 +44,7 @@ void ViewController::startGame()
 
     chickenController->timerAddChicken(1, 1);   // season 1 - level 1
 
-    chickenController->addEggTimer();
+    chickenController->addEggTimer();           /// drops egg from hen every 5 seconds
 
     addScoreBoard();
 
@@ -64,9 +65,9 @@ void ViewController::startMenu()
 {
     setBackground(":/images/bck.jpg");
 
-    QMediaPlayer *startPlayer = new QMediaPlayer;
-    startPlayer->setMedia(QUrl("qrc:/music/startGame.mp3"));
-    startPlayer->play();
+    startGameSound = new QMediaPlayer;
+    startGameSound->setMedia(QUrl("qrc:/music/startGame.mp3"));
+    startGameSound->play();
 
     play = new Play();
     quit = new Quit();

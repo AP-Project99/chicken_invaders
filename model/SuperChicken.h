@@ -3,12 +3,12 @@
 
 #include <QObject>
 
-#include "Birds.h"
+#include "Hen.h"
 #include "Egg.h"
 #include <QVector>
 
 class Egg;
-class SuperChicken : public Birds
+class SuperChicken : public Hen
 {
 
 private:
@@ -18,11 +18,6 @@ public:
     explicit SuperChicken(int number, int season, int level);
 
     ~SuperChicken();
-
-    static int superChickenNumbers;
-
-     QList <Egg *> eggs;
-
 
     void setImage() override;
 

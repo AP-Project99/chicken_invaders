@@ -21,6 +21,8 @@ SpaceShipController * SpaceShipController::getInstance()
 
 void SpaceShipController::addSpaceShip()
 {
+    delete reviveSpaceShipTimer;
+
     spaceShip = SpaceShip::getInstance();
     ViewController::scene->addItem(spaceShip);
     spaceShip->setPos(600 , 550);
@@ -35,17 +37,7 @@ void SpaceShipController::fire()
 {
     if(spaceShip){
         Bullet * bullet = new Bullet();
-        allBullets.push_back(bullet);
         ViewController::scene->addItem(bullet);
-
-        QMediaPlayer *bulletSound = new QMediaPlayer();
-        bulletSound->setMedia(QUrl("qrc:/music/bullet.mp3"));
-
-        if( bulletSound->state() == QMediaPlayer::PlayingState )
-            bulletSound->setPosition(0);
-
-        else if( bulletSound->state() == QMediaPlayer::StoppedState )
-            bulletSound->play();
     }
 }
 
@@ -80,10 +72,12 @@ void SpaceShipController::hitChicken()
     QList <QGraphicsItem *> collidingList = spaceShip->collidingItems();
 
     for(int i = 0; i < collidingList.size(); ++i){
+        QMediaPlayer * hitSpaceShip = nullptr;
+
         if( dynamic_cast <Birds *> (collidingList[i]) ){
 
             //sound for hit spaceship to birds
-            QMediaPlayer *hitSpaceShip = new QMediaPlayer;
+            hitSpaceShip = new QMediaPlayer;
             hitSpaceShip->setMedia(QUrl("qrc:/music/spaceshipToChicken.mp3"));
 
             if(hitSpaceShip->state() == QMediaPlayer::PlayingState)
@@ -104,14 +98,15 @@ void SpaceShipController::hitChicken()
             break;          /// if spaceShip hits many chickens only one health will be decreased
         }
 
-        if(typeid( *(collidingList[i]) ) == typeid(Egg) ){
+        else if(typeid( *(collidingList[i]) ) == typeid(Egg) ){
 
             //sound for hit spaceship to eggs
-            QMediaPlayer *hitSpaceShip = new QMediaPlayer;
+            hitSpaceShip = new QMediaPlayer;
             hitSpaceShip->setMedia(QUrl("qrc:/music/spaceshipToEgg.mp3"));
 
             if(hitSpaceShip->state() == QMediaPlayer::PlayingState)
                 hitSpaceShip->setPosition(0);
+
             else if(hitSpaceShip->state() == QMediaPlayer::StoppedState)
                 hitSpaceShip->play();
 
@@ -121,18 +116,20 @@ void SpaceShipController::hitChicken()
             removeSpaceShip();
 
             reviveSpaceShip();
+        }
 
-//            break;
-
+        if( hitSpaceShip ){
+            delete hitSpaceShip;
+            hitSpaceShip = nullptr;
         }
     }
 }
 
 void SpaceShipController::reviveSpaceShip(){
-    QTimer * reviveSpaceShip = new QTimer();
+    reviveSpaceShipTimer = new QTimer();
 
-    reviveSpaceShip->setSingleShot(true);
-    connect( reviveSpaceShip, SIGNAL(timeout()), this, SLOT(addSpaceShip()) );
-    reviveSpaceShip->start(2000);
+     reviveSpaceShipTimer->setSingleShot(true);
+    connect(  reviveSpaceShipTimer, SIGNAL(timeout()), this, SLOT(addSpaceShip()) );
+     reviveSpaceShipTimer->start(2000);
 }
 
