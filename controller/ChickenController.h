@@ -9,23 +9,19 @@
 #include "model/Chickens.h"
 #include "model/Hen.h"
 #include "model/Score.h"
+#include "model/SuperChicken.h"
 
 class ChickenController : public QObject
 {
     Q_OBJECT
 
 private:
+
     static ChickenController * chickenController;
 
     explicit ChickenController();
 
-
     QVector <Hen *> allHens;
-
-    QList< Birds *> allBirds;
-
-
-
 
     Score * score;
 
@@ -34,8 +30,15 @@ private:
 
     QGraphicsTextItem *txt;
 
+    QMediaPlayer * levelSound;
+
+
+
 
 public:
+
+    ~ChickenController();
+
     static ChickenController * getInstance();
 
 

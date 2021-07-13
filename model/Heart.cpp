@@ -22,6 +22,10 @@ Heart::Heart()
     ViewController::scene->addItem(scoreBoard);
 }
 
+Heart::~Heart(){
+
+}
+
 Heart *Heart::getInstance()
 {
     if(heart == nullptr)

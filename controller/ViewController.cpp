@@ -29,6 +29,7 @@ void ViewController::startGame()
     /// deleting objects and scene
     delete play;
     delete quit;
+    delete startGameSound;
     scene->clear();
 
     /// new image for background
@@ -63,6 +64,10 @@ void ViewController::exit()
 void ViewController::startMenu()
 {
     setBackground(":/images/bck.jpg");
+
+    startGameSound = new QMediaPlayer;
+    startGameSound->setMedia(QUrl("qrc:/music/startGame.mp3"));
+    startGameSound->play();
 
     play = new Play();
     quit = new Quit();

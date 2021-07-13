@@ -23,10 +23,10 @@ protected:
 
     int imageTimer = 0;
 
-
-
 public:
     explicit Birds(int number, int season, int level);
+
+    virtual ~Birds();
 
     static int totalAnimals;
 
@@ -44,6 +44,12 @@ public:
     void setChickenPos12(int number);
 
     void setChickenPos21(int number);
+
+    void setChickenPos22(int number);
+
+    void setChickenPos31(int number);
+
+    void setChickenPos32(int number);
 
 
 public slots:

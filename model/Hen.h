@@ -21,8 +21,6 @@ public:
 
     static int henNumbers;
 
-     QList <Egg *> eggs;
-
 
     void setImage() override;
 

@@ -22,6 +22,10 @@ Score::Score()
 
 }
 
+Score::~Score(){
+//    delete scoreBoard;
+}
+
 Score * Score::score = nullptr;
 
 Score *Score::getInstance()

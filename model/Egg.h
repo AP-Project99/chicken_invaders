@@ -4,7 +4,7 @@
 #include <QObject>
 #include <QGraphicsPixmapItem>
 #include <QTimer>
-
+#include <QMediaPlayer>
 #include "model/Hen.h"
 
 class Hen;
@@ -15,14 +15,19 @@ private:
 
     QTimer * eggTimer;
 
+    QTimer * delNimroTimer;
+
+    QMediaPlayer *eggSound;
+
     int eggSeconds = 0;
 
 
 public:
     explicit Egg(Hen * hen);
 
-    void reachEnd();
+    ~Egg();
 
+    void reachEnd();
 
 
 

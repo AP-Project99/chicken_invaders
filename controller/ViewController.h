@@ -32,7 +32,11 @@ private:
     QTimer * ctimer;
 
     Score * score;
+
     Heart * heart;
+
+    QMediaPlayer *startGameSound;
+
 
 public:
 
