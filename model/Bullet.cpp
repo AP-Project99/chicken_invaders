@@ -27,6 +27,16 @@ void Bullet::bulletHitChicken()
     for ( int i = 0; i < collidingList.size() ; ++i ) {
         if (dynamic_cast <Birds *> (collidingList[i])) {      /// if it "is a" bird
 
+            //sound for hit bullet to chicken
+            QMediaPlayer *hitPlayer = new QMediaPlayer;
+            hitPlayer->setMedia(QUrl("qrc:/music/bulletToChicken.mp3"));
+
+            if(hitPlayer->state() == QMediaPlayer::PlayingState)
+                hitPlayer->setPosition(0);
+            else if(hitPlayer->state() == QMediaPlayer::StoppedState)
+                hitPlayer->play();
+
+
             chickenController->decrementChicken( dynamic_cast <Birds *>(collidingList[i]) );
 
             hitted = true;

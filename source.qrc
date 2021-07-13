@@ -35,7 +35,6 @@
         <file>betweenLevel.mp3</file>
         <file>bulletToChicken.mp3</file>
         <file>finishEgg.mp3</file>
-        <file>gift.mp3</file>
         <file>meat.mp3</file>
         <file>spaceship.mp3</file>
         <file>spaceshipToChicken.mp3</file>
@@ -43,6 +42,8 @@
         <file>startGame.mp3</file>
         <file>twoBullet.mp3</file>
         <file>bullet.mp3</file>
+        <file>egg.mp3</file>
+        <file>gift.mp3</file>
     </qresource>
     <qresource prefix="/font">
         <file>SF Port McKenzie Extended.ttf</file>

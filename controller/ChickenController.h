@@ -19,7 +19,6 @@ private:
 
     explicit ChickenController();
 
-
     QVector <Hen *> allHens;
 
     QList< Birds *> allBirds;
