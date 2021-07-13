@@ -26,6 +26,7 @@ Egg::Egg(Hen * hen) : QObject(), QGraphicsPixmapItem()
 void Egg::moveDown(){
 
     if(y() == 620){
+        reachEnd();
 
         //sound for nimroo egg
 //        QMediaPlayer *nimrooPlayer = new QMediaPlayer;
@@ -36,7 +37,6 @@ void Egg::moveDown(){
 //        else if(nimrooPlayer->state() == QMediaPlayer::StoppedState)
 //            nimrooPlayer->play();
 
-        reachEnd();
     }
     else
         setPos( x() , y() + 5 );

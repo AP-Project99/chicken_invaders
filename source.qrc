@@ -30,6 +30,10 @@
         <file>hen4.png</file>
         <file>nimroo.png</file>
         <file>egg.png</file>
+        <file>superChicken4.png</file>
+        <file>superChicken1.png</file>
+        <file>superChicken2.png</file>
+        <file>superChicken3.png</file>
     </qresource>
     <qresource prefix="/music">
         <file>betweenLevel.mp3</file>

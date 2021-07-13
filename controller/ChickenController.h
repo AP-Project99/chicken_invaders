@@ -9,6 +9,7 @@
 #include "model/Chickens.h"
 #include "model/Hen.h"
 #include "model/Score.h"
+#include "model/SuperChicken.h"
 
 class ChickenController : public QObject
 {
@@ -21,9 +22,9 @@ private:
 
     QVector <Hen *> allHens;
 
+    QVector <SuperChicken *> allSuperChicken;
+
     QList< Birds *> allBirds;
-
-
 
 
     Score * score;
