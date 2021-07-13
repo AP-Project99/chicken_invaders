@@ -43,7 +43,7 @@ void ViewController::startGame()
 
     chickenController->timerAddChicken(1, 1);   // season 1 - level 1
 
-    chickenController->addEggTimer();
+    chickenController->addEggTimer();           /// drops egg from hen every 5 seconds
 
     addScoreBoard();
 

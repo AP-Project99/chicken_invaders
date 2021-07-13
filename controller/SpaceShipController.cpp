@@ -100,9 +100,6 @@ void SpaceShipController::hitChicken()
             removeSpaceShip();
 
             reviveSpaceShip();
-
-//            break;
-
         }
     }
 }

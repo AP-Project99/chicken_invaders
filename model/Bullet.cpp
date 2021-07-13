@@ -25,8 +25,7 @@ void Bullet::bulletHitChicken()
     bool hitted = false;
 
     for ( int i = 0; i < collidingList.size() ; ++i ) {
-        if (dynamic_cast <Birds *> (collidingList[i])) {      /// if it "is a" bird
-
+        if (dynamic_cast <Birds *> (collidingList[i])) {      /// if it is_a bird
             chickenController->decrementChicken( dynamic_cast <Birds *>(collidingList[i]) );
 
             hitted = true;
@@ -34,6 +33,7 @@ void Bullet::bulletHitChicken()
 
         if(typeid(*(collidingList[i])) == typeid(Egg)){
             chickenController->hitEgg(dynamic_cast <Egg *>(collidingList[i]));
+
             hitted = true;
         }
     }

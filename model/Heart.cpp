@@ -37,11 +37,6 @@ void Heart::decrease()
 
     if(spaceShipHeart == 0){
 
-//        QGraphicsPixmapItem *gameover=new QGraphicsPixmapItem();
-//        gameover->setPixmap(QPixmap(":/images/gameOver.png"));
-//        gameover->setPos(550,300);
-//        ViewController::scene->addItem(gameover);
-
         setPlainText(QString("Game Over !"));
         setDefaultTextColor(Qt::gray);
         setFont(QFont("SF Port McKenzie Extended",40));
