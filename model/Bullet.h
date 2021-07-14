@@ -16,7 +16,6 @@ private:
 
     ChickenController * chickenController;
 
-
     QTimer * bulletTimer;
 
     QMediaPlayer *bulletSound;
@@ -28,10 +27,10 @@ public:
 
     void bulletHitChicken();
 
-signals:
-
 public slots:
     void move();
+
+signals:
 
 };
 

@@ -2,6 +2,8 @@
 #include <iostream>
 #include <QDebug>
 
+#include "model/Meat.h"
+
 ChickenController::ChickenController() : QObject()
 {
    score = Score::getInstance();
@@ -160,25 +162,24 @@ void ChickenController::decrementChicken(Birds * bird)
 {
 
     bird->lives--;
+
     if(bird->lives == 0){
         if( bird->type == "chicken" )
             score->increase(5);
 
-        if( bird->type == "hen" ){
-            score->increase(10);
+        else {
+            if( bird->type == "hen" )
+                score->increase(10);
+
+            if( bird->type == "super chicken")
+                score->increase(20);
 
             for ( int i = 0; i < allHens.size(); i++ )
                 if( bird == allHens[i] )
                     allHens.erase(allHens.begin() + i);
-        }
 
-        if( bird->type == "super chicken"){
-            score->increase(20);
-
-            for ( int i = 0; i < allHens.size(); i++ )
-                if( dynamic_cast<SuperChicken*> (bird) == allHens[i] )
-                    allHens.erase(allHens.begin() + i);
-
+            Meat * meat = new Meat(bird);
+            ViewController::scene->addItem(meat);
         }
 
         ViewController::scene->removeItem(bird);
@@ -212,11 +213,16 @@ void ChickenController::addEgg(){
     }
 }
 
-void ChickenController::hitEgg(Egg * egg){
+void ChickenController::eggHitted(Egg * egg){
     score->increase(5);
 
     ViewController::scene->removeItem(egg);
     delete egg;
     egg = nullptr;
+}
+
+void ChickenController::meatHittedBySpaceShip(Meat * meat){
+    meat->increase();
+    delete meat;
 }
 

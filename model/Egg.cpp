@@ -53,6 +53,8 @@ void Egg::moveDown(){
 void Egg::reachEnd(){
     setPixmap(QPixmap(":/images/nimroo.png"));
 
+    reachedEnd = true;
+
     delNimroTimer = new QTimer;
     delNimroTimer->setSingleShot(true);
     delNimroTimer->start(1000);

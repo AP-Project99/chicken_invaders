@@ -1,6 +1,7 @@
 #include "SpaceShipController.h"
 #include <QGraphicsScene>
 #include "model/Birds.h"
+#include "model/Meat.h"
 
 
 SpaceShipController::SpaceShipController()
@@ -88,8 +89,7 @@ void SpaceShipController::hitChicken()
 
             spaceShip->spaceShipHeart->decrease();
 
-            /// delete spaceShip from the scene
-           /// spaceShip has set to null because we have deleted it from the scene
+            /// delete spaceShip from the scene spaceShip has set to null
             removeSpaceShip();
 
             /// add the spaceShip to the scene 2 sec later
@@ -99,23 +99,28 @@ void SpaceShipController::hitChicken()
         }
 
         else if(typeid( *(collidingList[i]) ) == typeid(Egg) ){
+            if( dynamic_cast <Egg *> (collidingList[i])->reachedEnd == false ){
 
-            //sound for hit spaceship to eggs
-            hitSpaceShip = new QMediaPlayer;
-            hitSpaceShip->setMedia(QUrl("qrc:/music/spaceshipToEgg.mp3"));
+                //sound for hit spaceship to eggs
+                hitSpaceShip = new QMediaPlayer;
+                hitSpaceShip->setMedia(QUrl("qrc:/music/spaceshipToEgg.mp3"));
 
-            if(hitSpaceShip->state() == QMediaPlayer::PlayingState)
-                hitSpaceShip->setPosition(0);
+                if(hitSpaceShip->state() == QMediaPlayer::PlayingState)
+                    hitSpaceShip->setPosition(0);
+                else if(hitSpaceShip->state() == QMediaPlayer::StoppedState)
+                    hitSpaceShip->play();
 
-            else if(hitSpaceShip->state() == QMediaPlayer::StoppedState)
-                hitSpaceShip->play();
 
+                spaceShip->spaceShipHeart->decrease();
 
-            spaceShip->spaceShipHeart->decrease();
+                removeSpaceShip();
 
-            removeSpaceShip();
+                reviveSpaceShip();
+            }
+        }
 
-            reviveSpaceShip();
+        else if( typeid( *(collidingList[i]) ) == typeid(Meat) ){
+            ChickenController::getInstance()->meatHittedBySpaceShip(dynamic_cast <Meat *> (collidingList[i]));
         }
 
         if( hitSpaceShip ){

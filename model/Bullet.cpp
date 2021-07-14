@@ -63,11 +63,12 @@ void Bullet::bulletHitChicken()
 
         else if( typeid(*(collidingList[i])) == typeid(Egg) ){
 
-            hitObject = new QMediaPlayer;
-            chickenController->hitEgg(dynamic_cast <Egg *>(collidingList[i]));
+//            hitObject = new QMediaPlayer;
+            chickenController->eggHitted(dynamic_cast <Egg *>(collidingList[i]));
 
             hitted = true;
         }
+
 
         if (hitObject){
             delete hitObject;
@@ -88,7 +89,7 @@ void Bullet::move()
     setPos(x(), y() - 10);
 
     if( y() <= 0 ){
-        ViewController::scene->removeItem(this);
+        scene()->removeItem(this);
         delete this;
     }
 }
