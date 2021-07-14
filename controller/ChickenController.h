@@ -9,7 +9,7 @@
 #include "model/Chickens.h"
 #include "model/Hen.h"
 #include "model/Score.h"
-#include "model/SuperChicken.h"
+#include "model/SuperHen.h"
 #include "model/Meat.h"
 
 class ChickenController : public QObject
@@ -54,6 +54,10 @@ public:
     void timerAddChicken(int ,int);
 
     void addEggTimer();
+
+    void textLevel();
+
+    void soundLevel();
 
 public slots:
     void addEgg();

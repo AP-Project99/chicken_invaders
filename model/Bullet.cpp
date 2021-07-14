@@ -14,6 +14,12 @@ Bullet::Bullet() : QObject() , QGraphicsPixmapItem()
     connect(bulletTimer, SIGNAL(timeout()), this, SLOT(move()));
     bulletTimer->start(25);
 
+    soundBullet();
+
+}
+
+void Bullet::soundBullet()
+{
     bulletSound = new QMediaPlayer();
     bulletSound->setMedia(QUrl("qrc:/music/bullet.mp3"));
 
@@ -22,9 +28,8 @@ Bullet::Bullet() : QObject() , QGraphicsPixmapItem()
 
     else if( bulletSound->state() == QMediaPlayer::StoppedState )
         bulletSound->play();
-
-
 }
+
 
 Bullet::~Bullet(){
     delete bulletSound;
@@ -42,19 +47,10 @@ void Bullet::bulletHitChicken()
     bool hitted = false;
 
     for ( int i = 0; i < collidingList.size() ; ++i ) {
-        QMediaPlayer * hitObject = nullptr;
 
         if (dynamic_cast <Birds *> (collidingList[i])) {      /// if it "is a" bird
 
-            //sound for hit bullet to chicken
-            hitObject = new QMediaPlayer;
-            hitObject->setMedia(QUrl("qrc:/music/bulletToChicken.mp3"));
-
-            if(hitObject->state() == QMediaPlayer::PlayingState)
-                hitObject->setPosition(0);
-
-            else if(hitObject->state() == QMediaPlayer::StoppedState)
-                hitObject->play();
+            soundBulletToChicken();
 
             chickenController->decrementChicken( dynamic_cast <Birds *>(collidingList[i]) );
 
@@ -71,15 +67,39 @@ void Bullet::bulletHitChicken()
 
 
         if (hitObject){
-            delete hitObject;
-            hitObject = nullptr;
+
+            QTimer *delSound = new QTimer;
+            delSound->setSingleShot(true);
+            connect(delSound, SIGNAL(timeout()), this , SLOT(deleteThisClass()));
+            delSound->start(2000);
         }
     }
 
     if(hitted){
         scene()->removeItem(this);
         delete this;
+//        deleteThisClass();
+
     }
+}
+
+void Bullet::soundBulletToChicken()
+{
+    //sound for hit bullet to chicken
+    hitObject = new QMediaPlayer;
+    hitObject->setMedia(QUrl("qrc:/music/bulletToChicken.mp3"));
+
+    if(hitObject->state() == QMediaPlayer::PlayingState)
+        hitObject->setPosition(0);
+
+    else if(hitObject->state() == QMediaPlayer::StoppedState)
+        hitObject->play();
+}
+
+void Bullet::deleteThisClass()
+{
+    delete hitObject;
+    hitObject = nullptr;
 }
 
 void Bullet::move()

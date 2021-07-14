@@ -73,19 +73,10 @@ void SpaceShipController::hitChicken()
     QList <QGraphicsItem *> collidingList = spaceShip->collidingItems();
 
     for(int i = 0; i < collidingList.size(); ++i){
-        QMediaPlayer * hitSpaceShip = nullptr;
 
         if( dynamic_cast <Birds *> (collidingList[i]) ){
 
-            //sound for hit spaceship to birds
-            hitSpaceShip = new QMediaPlayer;
-            hitSpaceShip->setMedia(QUrl("qrc:/music/spaceshipToChicken.mp3"));
-
-            if(hitSpaceShip->state() == QMediaPlayer::PlayingState)
-                hitSpaceShip->setPosition(0);
-            else if(hitSpaceShip->state() == QMediaPlayer::StoppedState)
-                hitSpaceShip->play();
-
+            soundSpaceShipToChicken();
 
             spaceShip->spaceShipHeart->decrease();
 
@@ -101,15 +92,7 @@ void SpaceShipController::hitChicken()
         else if(typeid( *(collidingList[i]) ) == typeid(Egg) ){
             if( dynamic_cast <Egg *> (collidingList[i])->reachedEnd == false ){
 
-                //sound for hit spaceship to eggs
-                hitSpaceShip = new QMediaPlayer;
-                hitSpaceShip->setMedia(QUrl("qrc:/music/spaceshipToEgg.mp3"));
-
-                if(hitSpaceShip->state() == QMediaPlayer::PlayingState)
-                    hitSpaceShip->setPosition(0);
-                else if(hitSpaceShip->state() == QMediaPlayer::StoppedState)
-                    hitSpaceShip->play();
-
+                soundSpaceShipToEgg();
 
                 spaceShip->spaceShipHeart->decrease();
 
@@ -120,21 +103,80 @@ void SpaceShipController::hitChicken()
         }
 
         else if( typeid( *(collidingList[i]) ) == typeid(Meat) ){
+
+            soundSpaceShipToMeat();
+
             ChickenController::getInstance()->meatHittedBySpaceShip(dynamic_cast <Meat *> (collidingList[i]));
         }
 
-        if( hitSpaceShip ){
-            delete hitSpaceShip;
-            hitSpaceShip = nullptr;
+        if( hitSpaceShipSound ){
+            QTimer *delTimer = new QTimer;
+            delTimer->setSingleShot(true);
+            connect(delTimer , SIGNAL(timeout()) , this , SLOT(deleteSound()));
+            delTimer->start(2000);
         }
+
     }
 }
+
+void SpaceShipController::deleteSound()
+{
+    delete hitSpaceShipSound;
+    hitSpaceShipSound = nullptr;
+}
+
+
+void SpaceShipController::soundSpaceShipToChicken()
+{
+    //sound for hit spaceship to birds
+    hitSpaceShipSound = new QMediaPlayer;
+    hitSpaceShipSound->setMedia(QUrl("qrc:/music/spaceshipToChicken.mp3"));
+
+    if(hitSpaceShipSound->state() == QMediaPlayer::PlayingState)
+        hitSpaceShipSound->setPosition(0);
+
+    else if(hitSpaceShipSound->state() == QMediaPlayer::StoppedState)
+        hitSpaceShipSound->play();
+
+}
+
+void SpaceShipController::soundSpaceShipToEgg()
+{
+    //sound for hit spaceship to eggs
+    hitSpaceShipSound = new QMediaPlayer;
+    hitSpaceShipSound->setMedia(QUrl("qrc:/music/spaceshipToEgg.mp3"));
+
+    if(hitSpaceShipSound->state() == QMediaPlayer::PlayingState)
+        hitSpaceShipSound->setPosition(0);
+
+    else if(hitSpaceShipSound->state() == QMediaPlayer::StoppedState)
+        hitSpaceShipSound->play();
+}
+
+void SpaceShipController::soundSpaceShipToMeat()
+{
+    //sound for hit spaceship to meat for get score
+    hitSpaceShipSound = new QMediaPlayer;
+    hitSpaceShipSound->setMedia(QUrl("qrc:/music/meat.mp3"));
+
+    if(hitSpaceShipSound->state() == QMediaPlayer::PlayingState)
+        hitSpaceShipSound->setPosition(0);
+
+    else if(hitSpaceShipSound->state() == QMediaPlayer::StoppedState)
+        hitSpaceShipSound->play();
+}
+
 
 void SpaceShipController::reviveSpaceShip(){
     reviveSpaceShipTimer = new QTimer();
 
      reviveSpaceShipTimer->setSingleShot(true);
-    connect(  reviveSpaceShipTimer, SIGNAL(timeout()), this, SLOT(addSpaceShip()) );
+     connect(  reviveSpaceShipTimer, SIGNAL(timeout()), this, SLOT(addSpaceShip()) );
      reviveSpaceShipTimer->start(2000);
 }
 
+void SpaceShipController::addGift()
+{
+    Gift *gift = new Gift();
+    ViewController::scene->addItem(gift);
+}

@@ -4,7 +4,7 @@
 #include <QObject>
 #include <QMediaPlayer>
 #include <QList>
-
+#include "model/Gift.h"
 #include "model/Spaceship.h"
 #include "model/Bullet.h"
 #include "ViewController.h"
@@ -27,7 +27,7 @@ private:
 
     QTimer * reviveSpaceShipTimer;
 
-
+    QMediaPlayer * hitSpaceShipSound;
 
 public:
     static SpaceShipController * getInstance ();
@@ -48,11 +48,20 @@ public:
 
     void hitChicken();
 
+    void soundSpaceShipToChicken();
+
+    void soundSpaceShipToEgg();
+
+    void soundSpaceShipToMeat();
+
+
 public slots:
 
     void addSpaceShip();
 
+    void addGift();
 
+    void deleteSound();
 };
 
 #endif // SPACESHIPCONTROLLER_H

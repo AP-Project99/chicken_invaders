@@ -1,19 +1,19 @@
-#include "SuperChicken.h"
+#include "SuperHen.h"
 
 
 
-SuperChicken::SuperChicken(int number, int season, int level) :  Hen(number, season, level)
+SuperHen::SuperHen(int number, int season, int level) :  Hen(number, season, level)
 {
-    type = "super chicken";
+    type = "super hen";
     lives = 4;
 }
 
-SuperChicken::~SuperChicken()
+SuperHen::~SuperHen()
 {
 
 }
 
-void SuperChicken::setImage(){
+void SuperHen::setImage(){
 
     if( imageTimer % 4 == 0)
         setPixmap(QPixmap(":/images/superChicken1.png"));

@@ -29,7 +29,12 @@ void ViewController::startGame()
     /// deleting objects and scene
     delete play;
     delete quit;
-    delete startGameSound;
+
+    QTimer *delSound = new QTimer;
+    delSound->setSingleShot(true);
+    connect(delSound , SIGNAL(timeout()) , this, SLOT(deleteStartGameSound()));
+    delSound->start(8000);
+
     scene->clear();
 
     /// new image for background
@@ -59,6 +64,11 @@ void ViewController::exit()
     connect( exitTimer, SIGNAL(timeout()), View::getInstance(), SLOT(close()));
     exitTimer->start(1900);
 
+}
+
+void ViewController::deleteStartGameSound()
+{
+    delete startGameSound;
 }
 
 void ViewController::startMenu()
@@ -92,7 +102,6 @@ void ViewController::addScoreBoard()
     score = Score::getInstance();
     scene->addItem(score);
 }
-
 
 
 
