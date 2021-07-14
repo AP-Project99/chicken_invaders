@@ -27,6 +27,8 @@ public:
 
     ~Egg();
 
+    bool reachedEnd = false;
+
     void reachEnd();
 
 

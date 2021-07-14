@@ -27,7 +27,6 @@ private:
 
     QTimer * reviveSpaceShipTimer;
 
-//    QMediaPlayer *hitSpaceShip;
 
 
 public:

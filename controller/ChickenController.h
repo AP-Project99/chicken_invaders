@@ -10,6 +10,7 @@
 #include "model/Hen.h"
 #include "model/Score.h"
 #include "model/SuperChicken.h"
+#include "model/Meat.h"
 
 class ChickenController : public QObject
 {
@@ -45,7 +46,9 @@ public:
     void decrementChicken(Birds *);
 
 
-    void hitEgg(Egg *);
+    void eggHitted(Egg *);
+
+    void meatHittedBySpaceShip(Meat *);
 
 
     void timerAddChicken(int ,int);

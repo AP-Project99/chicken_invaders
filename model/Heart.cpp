@@ -2,6 +2,7 @@
 #include <QFont>
 #include <QGraphicsScene>
 #include <controller/ViewController.h>
+#include "Meat.h"
 
 Heart * Heart::heart = nullptr;     /// initializing static member
 
@@ -20,6 +21,8 @@ Heart::Heart()
     scoreBoard->setPixmap(QPixmap(":/images/health-meet.png"));
     scoreBoard->setPos(0,622);
     ViewController::scene->addItem(scoreBoard);
+
+    Meat::addMeatNumberTextItem();
 }
 
 Heart::~Heart(){

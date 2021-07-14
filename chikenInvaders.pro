@@ -21,6 +21,7 @@ SOURCES += \
     model/Egg.cpp \
     model/Heart.cpp \
     model/Hen.cpp \
+    model/Meat.cpp \
     model/Score.cpp \
     model/Spaceship.cpp \
     model/SuperChicken.cpp \
@@ -41,6 +42,7 @@ HEADERS += \
     model/Egg.h \
     model/Heart.h \
     model/Hen.h \
+    model/Meat.h \
     model/Score.h \
     model/Spaceship.h \
     model/SuperChicken.h \
