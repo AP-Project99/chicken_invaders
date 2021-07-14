@@ -35,6 +35,7 @@
         <file>superChicken2.png</file>
         <file>superChicken3.png</file>
         <file>meat.png</file>
+        <file>gift.png</file>
     </qresource>
     <qresource prefix="/music">
         <file>betweenLevel.mp3</file>

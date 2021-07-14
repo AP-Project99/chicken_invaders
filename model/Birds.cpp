@@ -186,11 +186,11 @@ void Birds::setChickenPos32(int number)
     int x;
     int y = 0;
 
-    if(number<6)
+    if(number<9)
         y=-180;
-    if(number>=6&&number<12)
+    if(number>=9&&number<18)
         y=-120;
-    if(number>=12&&number<18)
+    if(number>=18&&number<27)
         y=-60;
 
     number%=9;

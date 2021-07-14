@@ -28,22 +28,9 @@ void ChickenController::timerAddChicken(int level,int season){
     this->level = level;
     this->season = season;
 
-    txt = new QGraphicsTextItem();
-    QString str = "season " + QString::number(season) + " - level " + QString::number(level);
-    txt->setPlainText(str);
-    txt->setDefaultTextColor(Qt::gray);
-    txt->setFont(QFont("SF Port McKenzie Extended",40));
-    txt->setPos(550,300);
+    textLevel();
 
-    ViewController::scene->addItem(txt);
-
-    levelSound = new QMediaPlayer;
-    if(season == 1 && level == 1)
-        levelSound->setMedia(QUrl("qrc:/music/spaceship.mp3"));
-    else
-        levelSound->setMedia(QUrl("qrc:/music/betweenLevel.mp3"));
-
-    levelSound->play();
+    soundLevel();
 
     // add chickens after 4 seconds
     QTimer * betweenLevelTimer = new QTimer();
@@ -51,8 +38,39 @@ void ChickenController::timerAddChicken(int level,int season){
     connect( betweenLevelTimer, SIGNAL(timeout()), this, SLOT(addChicken()));
     betweenLevelTimer->start(4000);
 
+    if(season == 3){
+        QTimer *giftTimer = new QTimer;
+        connect(giftTimer , SIGNAL(timeout()) , SpaceShipController::getInstance() , SLOT(addGift()));
+        giftTimer->start(15000);
+    }
 
 }
+
+void ChickenController::textLevel()
+{
+    txt = new QGraphicsTextItem();
+    QString str = "season " + QString::number(season) + " - level " + QString::number(level);
+    txt->setPlainText(str);
+    txt->setDefaultTextColor(Qt::gray);
+    txt->setFont(QFont("SF Port McKenzie Extended", 40));
+    txt->setPos(550, 200);
+
+    ViewController::scene->addItem(txt);
+}
+
+
+void ChickenController::soundLevel()
+{
+    levelSound = new QMediaPlayer;
+
+    if(season == 1 && level == 1)
+        levelSound->setMedia(QUrl("qrc:/music/spaceship.mp3"));
+    else
+        levelSound->setMedia(QUrl("qrc:/music/betweenLevel.mp3"));
+
+    levelSound->play();
+}
+
 
 void ChickenController::addEggTimer()
 {
@@ -136,7 +154,7 @@ void ChickenController::addChicken(){
                     bird = new Hen(i, 3, 1);
 
                 if( i % 2 == 1 )
-                    bird = new SuperChicken(i, 3, 1);
+                    bird = new SuperHen(i, 3, 1);
 
                 allHens.push_back(bird);
                 ViewController::scene->addItem(bird);
@@ -148,7 +166,7 @@ void ChickenController::addChicken(){
 
 
             for (int i = 0; i < 27 ; ++i ) {
-                Hen * bird = new SuperChicken(i, 3, 2);
+                Hen * bird = new SuperHen(i, 3, 2);
                 allHens.push_back(bird);
                 ViewController::scene->addItem(bird);
             }
@@ -171,7 +189,7 @@ void ChickenController::decrementChicken(Birds * bird)
             if( bird->type == "hen" )
                 score->increase(10);
 
-            if( bird->type == "super chicken")
+            if( bird->type == "super hen")
                 score->increase(20);
 
             for ( int i = 0; i < allHens.size(); i++ )

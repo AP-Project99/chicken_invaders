@@ -20,6 +20,8 @@ private:
 
     QMediaPlayer *bulletSound;
 
+    QMediaPlayer * hitObject = nullptr;
+
 public:
     explicit Bullet();
 
@@ -27,8 +29,15 @@ public:
 
     void bulletHitChicken();
 
+    void soundBullet();
+
+    void soundBulletToChicken();
+
+
 public slots:
     void move();
+
+    void deleteThisClass();
 
 signals:
 

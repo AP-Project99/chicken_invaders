@@ -34,16 +34,6 @@ void Egg::moveDown(){
 
     if(y() >= 620){
         reachEnd();
-
-        //sound for nimroo egg
-//        QMediaPlayer *nimrooPlayer = new QMediaPlayer;
-//        nimrooPlayer->setMedia(QUrl("qrc:/music/finishEgg.mp3"));
-
-//        if(nimrooPlayer->state() == QMediaPlayer::PlayingState)
-//            nimrooPlayer->setPosition(0);
-//        else if(nimrooPlayer->state() == QMediaPlayer::StoppedState)
-//            nimrooPlayer->play();
-
     }
     else
         setPos( x() , y() + 5 );

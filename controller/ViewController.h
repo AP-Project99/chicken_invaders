@@ -11,6 +11,7 @@
 #include <model/Chickens.h>
 #include "SpaceShipController.h"
 #include "ChickenController.h"
+#include "model/Gift.h"
 
 class SpaceShipController;
 class ChickenController;
@@ -56,13 +57,16 @@ public:
 
     void addScoreBoard();
 
+    void addGift();
+
     static void exit();
+
 
 
 public slots:
     void startGame();
 
-
+    void deleteStartGameSound();
 
 signals:
 

@@ -47,7 +47,7 @@ void Heart::decrease()
         setPlainText(QString("Game Over !"));
         setDefaultTextColor(Qt::gray);
         setFont(QFont("SF Port McKenzie Extended",40));
-        setPos(550,300);
+        setPos(550,200);
 
         ViewController::exit();
     }

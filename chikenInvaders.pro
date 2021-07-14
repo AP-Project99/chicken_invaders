@@ -19,12 +19,13 @@ SOURCES += \
     model/Bullet.cpp \
     model/Chickens.cpp \
     model/Egg.cpp \
+    model/Gift.cpp \
     model/Heart.cpp \
     model/Hen.cpp \
     model/Meat.cpp \
     model/Score.cpp \
     model/Spaceship.cpp \
-    model/SuperChicken.cpp \
+    model/SuperHen.cpp \
     model/menu/Play.cpp \
     model/menu/Quit.cpp \
     model/menu/Resume.cpp \
@@ -40,12 +41,13 @@ HEADERS += \
     model/Bullet.h \
     model/Chickens.h \
     model/Egg.h \
+    model/Gift.h \
     model/Heart.h \
     model/Hen.h \
     model/Meat.h \
     model/Score.h \
     model/Spaceship.h \
-    model/SuperChicken.h \
+    model/SuperHen.h \
     model/menu/Play.h \
     model/menu/Quit.h \
     model/menu/Resume.h \
